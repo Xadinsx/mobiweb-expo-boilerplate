@@ -13,18 +13,24 @@
     "react-native-screens": "~4.26.0"
   },
   "devDependencies": {
+    "@callstack/eslint-config": "^15.0.0",
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "29.5.14",
     "@types/react": "~19.2.2",
+    "eslint": "^8.57.1",
     "jest": "~29.7.0",
     "jest-expo": "~57.0.5",
+    "knip": "^6.38.0",
     "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "test": "jest"
+    "test": "jest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "knip": "knip"
   },
   "private": true,
   "jest": {
