@@ -1,6 +1,6 @@
 ## Ticket
 
-<!-- Jira link, for example https://<your-jira>/browse/MOB-123 -->
+<!-- Jira link, for example https://<your-jira>/browse/MOB-123, or "none" while the team has no Jira -->
 
 ## Plan
 

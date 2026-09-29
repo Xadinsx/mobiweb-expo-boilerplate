@@ -19,7 +19,7 @@ Expo app (Expo Router, strict TypeScript, Jest with React Native Testing Library
 - Write the simplest code that works and match the surrounding code. Follow `docs/ai/house-style.md`, especially the search-before-write rule and the abstraction rule.
 - Expo, EAS, and React Native APIs change between SDK versions. Check `https://docs.expo.dev/versions/v57.0.0/` before writing code that uses them.
 - Every interactive element gets a `testID` and an accessibility label, named as `docs/ai/house-style.md` describes.
-- Branch names and PR titles start with the Jira ticket key.
+- Once the team uses Jira (repo variable `REQUIRE_TICKET_KEY` is `true`), branch names and PR titles start with the Jira ticket key. Until then, use short descriptive names.
 - Never read, print, or commit secrets, `.env` files, or client data. Report suspected exposure to information.security@celfocus.com.
 - Do not read `node_modules`, build output, or lockfiles. Search with targeted patterns and read file ranges, not whole directories.
 
