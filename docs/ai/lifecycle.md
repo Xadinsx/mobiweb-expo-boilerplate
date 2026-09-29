@@ -33,14 +33,15 @@ flowchart TB
 
 ## Jira
 
-- The ticket key starts the branch name and the PR title, for example `MOB-123-items-empty-state`.
+- Jira is optional for now. The `ticket-key` check only runs when the repository variable `REQUIRE_TICKET_KEY` is `true` (GitHub: Settings, Secrets and variables, Actions, Variables). Set it once the team uses Jira, and add `ticket-key` to the required checks.
+- When Jira is in use, the ticket key starts the branch name and the PR title, for example `MOB-123-items-empty-state`. Until then, use short descriptive names.
 - The agent may read a ticket. It never writes to Jira: no status changes, comments, or edits. Developers update ticket status by hand.
 - Reading tickets through an Atlassian MCP server is optional. If you set one up, allow only its read tools and deny every write tool (create, edit, transition, comment) in your Claude settings; the deny list is the control, not an assumed read-only mode. Use a read-only Jira account if the server supports one. Without MCP, paste the ticket text into the session.
 
 ## Review and merge rules
 
 - Every PR needs human review from a code owner. AI-generated code is never merged without it.
-- Required checks on the main branch today: `checks`, `secret-scan`, and `ticket-key`, all from GitHub Actions. The repo owner sets this in GitHub branch protection.
+- Required checks on the main branch today: `checks` and `secret-scan`, from GitHub Actions. Add `ticket-key` when Jira is in use. The repo owner sets this in GitHub branch protection.
 - Not enforced yet: the Maestro run on EAS is advisory until it is added as a required status under the name GitHub shows for it, and the QA agent does not exist yet (see `docs/plans/`). Until then, a red device check does not block a merge by itself, so reviewers must look at it.
 - Before turning on "Require review from Code Owners", replace the `@your-org/your-team` placeholder in `.github/CODEOWNERS` with the real team. Until then, code owner review is not enforced.
 - The reviewer reads the diff and the "Decisions weighed" section, not only the green checks. A passing QA agent report is evidence, not approval.

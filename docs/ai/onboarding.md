@@ -18,7 +18,7 @@ Goal: ship a small first PR with Claude Code by the end of the day. Read `docs/a
 
 ## First day
 
-1. Take a small ticket and create a branch named `<TICKET-KEY>-short-name`.
+1. Take a small ticket and create a branch named `<TICKET-KEY>-short-name` once the team uses Jira, or a short descriptive name until then.
 2. Start a fresh Claude Code session. For anything beyond a small fix, run `/compound-engineering:ce-plan` first.
 3. Implement with `/compound-engineering:ce-work`. Run `npm run typecheck`, `npm run lint`, `npm test`, and `npm run dead-code`.
 4. Run `/compound-engineering:ce-simplify-code`, then `/compound-engineering:ce-code-review`, and fix what they raise.
