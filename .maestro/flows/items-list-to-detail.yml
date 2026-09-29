@@ -1,0 +1,11 @@
+appId: com.mobiweb.expoboilerplate
+---
+- launchApp
+- assertVisible:
+    id: items-main-list
+- tapOn:
+    id: items-row-2-button
+- assertVisible:
+    id: detail-title-text
+- assertVisible: Item two
+- assertVisible: Description of item two
