@@ -30,7 +30,7 @@
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "knip": "knip"
+    "dead-code": "knip"
   },
   "private": true,
   "jest": {

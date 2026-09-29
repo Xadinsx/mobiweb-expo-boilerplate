@@ -4,7 +4,7 @@ Expo app (Expo Router, strict TypeScript, Jest with React Native Testing Library
 
 ## Commands
 
-- `npm run typecheck`, `npm run lint`, `npm test`, `npm run knip`: run all four before saying a task is done.
+- `npm run typecheck`, `npm run lint`, `npm test`, `npm run dead-code`: run all four before saying a task is done.
 - `npx expo start`: dev server.
 - `npx expo install <package>`: always use this to add dependencies, so versions match the Expo SDK.
 

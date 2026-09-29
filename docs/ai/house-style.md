@@ -39,4 +39,4 @@ Examples: `items-main-list`, `items-row-2-button`, `detail-title-text`.
 
 ## Checks
 
-Run `npm run typecheck`, `npm run lint`, `npm test`, and `npm run knip` before opening a PR. Formatting comes from Prettier through ESLint; run `npx eslint . --fix` to apply it.
+Run `npm run typecheck`, `npm run lint`, `npm test`, and `npm run dead-code` before opening a PR. Formatting comes from Prettier through ESLint; run `npx eslint . --fix` to apply it.
