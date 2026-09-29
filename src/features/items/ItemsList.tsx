@@ -15,7 +15,9 @@ export function ItemsList({ items }: Props) {
       testID="items-main-list"
       data={items}
       keyExtractor={(item) => item.id}
-      ListEmptyComponent={<Text testID="items-empty-text">No items to show</Text>}
+      ListEmptyComponent={
+        <Text testID="items-empty-text">No items to show</Text>
+      }
       renderItem={({ item }) => (
         <Pressable
           testID={`items-row-${item.id}-button`}
