@@ -25,7 +25,7 @@ flowchart TB
 | Simplify and self-review | Agent | The diff | Diff with duplication and needless abstraction removed | Reviewer-ready diff; "Decisions weighed" written | `/compound-engineering:ce-simplify-code`, `/compound-engineering:ce-code-review` |
 | Open PR | Developer | Branch | PR titled `<TICKET-KEY> short summary`, template filled | PR template complete | `/compound-engineering:ce-commit-push-pr` |
 | CI gates | CI | PR | Typecheck, lint, tests, knip, secret scan, ticket-key check results | All required checks green | none |
-| Device checks | CI | PR build | Maestro results and QA agent report with screenshots | Required checks green, or inconclusive QA run acknowledged by a reviewer | none |
+| Device checks | CI | PR build | Maestro results now; QA agent report with screenshots once it exists | Maestro green; when the QA agent exists, its check green or an inconclusive run acknowledged by a reviewer | none |
 | Human review | Reviewer | PR, checks, QA evidence | Approval or requested changes | Approval from a code owner | none |
 | Merge | Developer | Approved PR | Change on the main branch | Branch protection satisfied | none |
 | Release | A maintainer, by hand | Merged main branch | Production build submitted to the stores | Store submission accepted | EAS production build and submit; not automated here |
@@ -40,5 +40,7 @@ flowchart TB
 ## Review and merge rules
 
 - Every PR needs human review from a code owner. AI-generated code is never merged without it.
-- Required checks on the main branch: `checks`, `secret-scan`, and `ticket-key`. The device checks `maestro` and `qa-agent` join the list when they exist. The repo owner sets this in GitHub branch protection.
+- Required checks on the main branch today: `checks`, `secret-scan`, and `ticket-key`, all from GitHub Actions. The repo owner sets this in GitHub branch protection.
+- Not enforced yet: the Maestro run on EAS is advisory until it is added as a required status under the name GitHub shows for it, and the QA agent does not exist yet (see `docs/plans/`). Until then, a red device check does not block a merge by itself, so reviewers must look at it.
+- Before turning on "Require review from Code Owners", replace the `@your-org/your-team` placeholder in `.github/CODEOWNERS` with the real team. Until then, code owner review is not enforced.
 - The reviewer reads the diff and the "Decisions weighed" section, not only the green checks. A passing QA agent report is evidence, not approval.

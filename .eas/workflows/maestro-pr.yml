@@ -13,8 +13,17 @@ jobs:
     type: get-build
     params:
       platform: android
+      profile: e2e-test
       fingerprint_hash: ${{ needs.fingerprint.outputs.android_fingerprint_hash }}
       wait_for_in_progress: true
+
+  # A matching native build may hold an older JS bundle, so embed this PR's bundle.
+  repack_android:
+    needs: [get_android_build]
+    if: ${{ needs.get_android_build.outputs.build_id }}
+    type: repack
+    params:
+      build_id: ${{ needs.get_android_build.outputs.build_id }}
 
   build_android:
     needs: [get_android_build]
@@ -25,11 +34,11 @@ jobs:
       profile: e2e-test
 
   maestro_android:
-    needs: [get_android_build, build_android]
-    after: [get_android_build, build_android]
+    needs: [repack_android, build_android]
+    after: [repack_android, build_android]
     type: maestro
     params:
-      build_id: ${{ needs.get_android_build.outputs.build_id || needs.build_android.outputs.build_id }}
+      build_id: ${{ needs.repack_android.outputs.build_id || needs.build_android.outputs.build_id }}
       flow_path: .maestro/flows
 
   get_ios_build:
@@ -37,8 +46,16 @@ jobs:
     type: get-build
     params:
       platform: ios
+      profile: e2e-test
       fingerprint_hash: ${{ needs.fingerprint.outputs.ios_fingerprint_hash }}
       wait_for_in_progress: true
+
+  repack_ios:
+    needs: [get_ios_build]
+    if: ${{ needs.get_ios_build.outputs.build_id }}
+    type: repack
+    params:
+      build_id: ${{ needs.get_ios_build.outputs.build_id }}
 
   build_ios:
     needs: [get_ios_build]
@@ -49,9 +66,9 @@ jobs:
       profile: e2e-test
 
   maestro_ios:
-    needs: [get_ios_build, build_ios]
-    after: [get_ios_build, build_ios]
+    needs: [repack_ios, build_ios]
+    after: [repack_ios, build_ios]
     type: maestro
     params:
-      build_id: ${{ needs.get_ios_build.outputs.build_id || needs.build_ios.outputs.build_id }}
+      build_id: ${{ needs.repack_ios.outputs.build_id || needs.build_ios.outputs.build_id }}
       flow_path: .maestro/flows

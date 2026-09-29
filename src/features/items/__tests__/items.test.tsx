@@ -27,6 +27,15 @@ describe("items flow", () => {
     );
   });
 
+  it("sends an unknown item id back to the list", () => {
+    const { getPathname } = renderRouter("src/app", {
+      initialUrl: "/item/999",
+    });
+
+    expect(getPathname()).toBe("/");
+    expect(screen.getByTestId("items-main-list")).toBeTruthy();
+  });
+
   it("shows the empty state instead of a blank screen", () => {
     render(<ItemsList items={[]} />);
 
