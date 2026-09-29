@@ -39,3 +39,8 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# secrets: keep local env files out of git, keep the example
+.env
+.env.*
+!.env.example
