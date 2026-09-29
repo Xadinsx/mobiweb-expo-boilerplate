@@ -1,7 +1,7 @@
-import { Redirect, useLocalSearchParams } from 'expo-router';
+import { Redirect, useLocalSearchParams } from "expo-router";
 
-import { ItemDetail } from '@/features/items/ItemDetail';
-import { items } from '@/features/items/items';
+import { ItemDetail } from "../../features/items/ItemDetail";
+import { items } from "../../features/items/items";
 
 export default function ItemScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();

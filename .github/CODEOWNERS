@@ -1,0 +1,10 @@
+# Replace @your-org/your-team with the real GitHub team or users before enabling
+# "Require review from Code Owners" in branch protection.
+
+*                       @your-org/your-team
+
+# Files that decide what CI, the QA agent, and the AI tooling can do need owner approval.
+/.github/workflows/     @your-org/your-team
+/.eas/workflows/        @your-org/your-team
+/scripts/agent-qa/      @your-org/your-team
+/.claude/settings.json  @your-org/your-team

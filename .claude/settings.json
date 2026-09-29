@@ -1,0 +1,30 @@
+{
+  "extraKnownMarketplaces": {
+    "compound-engineering-plugin": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/everyinc/compound-engineering-plugin.git"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "compound-engineering@compound-engineering-plugin": true
+  },
+  "permissions": {
+    "deny": [
+      "Read(./node_modules/**)",
+      "Read(./.expo/**)",
+      "Read(./dist/**)",
+      "Read(./package-lock.json)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Bash(cat .env*)",
+      "Bash(cat ./.env*)",
+      "Bash(less .env*)",
+      "Bash(head .env*)",
+      "Bash(tail .env*)",
+      "Bash(grep * .env*)",
+      "Bash(sed * .env*)"
+    ]
+  }
+}

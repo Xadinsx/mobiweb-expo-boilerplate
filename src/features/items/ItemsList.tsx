@@ -1,7 +1,9 @@
-import { router } from 'expo-router';
-import { FlatList, Pressable, StyleSheet, Text } from 'react-native';
+import { router } from "expo-router";
+import { FlatList, Pressable, StyleSheet, Text } from "react-native";
 
-import type { Item } from './items';
+import type { Item } from "./items";
+
+const ROW_BORDER_COLOR = "#ccc";
 
 type Props = {
   items: Item[];
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
   row: {
     padding: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#ccc',
+    borderBottomColor: ROW_BORDER_COLOR,
   },
   title: {
     fontSize: 16,
