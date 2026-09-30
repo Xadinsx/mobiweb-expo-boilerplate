@@ -1,6 +1,6 @@
 # QA agent
 
-On every same-repository pull request, a GitHub Actions job (`qa-agent`) builds the app, boots an Android emulator, and lets Claude Code check the flows the change could affect. It posts one report as a PR comment and links the screenshots.
+On every same-repository pull request that changes the app (see `docs/ai/lifecycle.md`), a GitHub Actions job (`qa-agent`) builds the app, boots an Android emulator, and lets Claude Code check the flows the change could affect. It posts one report as a PR comment and links the screenshots.
 
 ## How it works
 

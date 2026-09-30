@@ -12,7 +12,30 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  changes:
+    # Skip the slow device job for PRs that cannot change the app (docs, CI for other jobs, ...).
+    # A skipped job counts as passing, so this is safe to require.
+    runs-on: ubuntu-latest
+    outputs:
+      app: ${{ steps.filter.outputs.app }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: filter
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          if git diff --name-only "origin/$BASE_REF" HEAD | grep -E '^(src/|assets/|\.maestro/|app\.json$|package(-lock)?\.json$|tsconfig\.json$|\.github/workflows/maestro-android\.yml$)'; then
+            echo "app=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "app=false" >> "$GITHUB_OUTPUT"
+            echo "No files that can change the app (src, assets, app and package config, Maestro flows); skipping the device job."
+          fi
+
   maestro-android:
+    needs: changes
+    if: ${{ needs.changes.outputs.app == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
