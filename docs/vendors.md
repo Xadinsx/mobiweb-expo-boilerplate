@@ -35,7 +35,7 @@ Unknown names fail with a list of the vendors that exist. Local runs, CI and EAS
 
 - **Identity:** name, URL scheme, iOS bundle id, Android package, icon and adaptive icon. Each vendor needs its own name, scheme and ids; a test enforces it.
 - **Look:** a palette for each color scheme the vendor supports (`light`, `dark` or both).
-- **Schemes and languages:** what is supported, the default, and whether users can choose.
+- **Schemes and languages:** what is supported, the default, and whether users can choose. A language code must exist in the registry `src/shared/config/i18n/languages.ts`; adding a language is one translation file plus one line there, and the app refuses to start for a code with no translation.
 - **Features and backend:** named flags and the API base URL.
 - **Services:** public identifiers only, such as a crash-reporting DSN. Anything inside an app can be read, so never put a secret in a vendor.
 - **`eas`** (optional): owner, project id and slug, for a vendor with its own EAS project. Other vendors use the boilerplate's.

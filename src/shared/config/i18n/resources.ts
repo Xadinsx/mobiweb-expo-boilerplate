@@ -8,9 +8,8 @@ export const en = {
     title: "Item",
   },
   settings: {
-    english: "English",
     language: "Language",
-    portuguese: "Portuguese",
+    nothingToChange: "Nothing to change.",
     theme: "Dark theme",
     title: "Settings",
   },
@@ -26,9 +25,8 @@ export const pt: typeof en = {
     title: "Item",
   },
   settings: {
-    english: "Inglês",
     language: "Idioma",
-    portuguese: "Português",
+    nothingToChange: "Nada para alterar.",
     theme: "Tema escuro",
     title: "Definições",
   },

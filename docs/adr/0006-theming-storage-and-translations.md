@@ -14,6 +14,8 @@ The boilerplate will seed a white-label app, so brand colors, dark mode and lang
 - **Translations:** `i18next` with `react-i18next`, and `expo-localization` for the device language. English and Portuguese, with keys type-checked against the English resources.
 - The theme and translations are configured in `index.ts`, before the router starts, because Unistyles needs its configuration before any component creates styles.
 
+These are the company's recommended defaults, not requirements. What a vendor gets from them (its palettes, which color schemes and languages it supports, and whether users can choose) comes from the vendor's config, not from the shared code; see `docs/vendors.md`.
+
 ## Alternatives
 
 - Plain `StyleSheet` with a theme context: no native module, but every component re-renders on a theme change and there are no built-in variants or breakpoints.

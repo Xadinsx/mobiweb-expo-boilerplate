@@ -50,7 +50,7 @@ The layout follows Feature-Sliced Design (FSD); `docs/adr/0001-feature-sliced-de
 
 - **Styles** live next to the component in `Component.styles.ts`, created with `StyleSheet.create((theme) => ({ ... }))` from `react-native-unistyles`. No inline styles and no color or size literals in components: take them from the theme.
 - **Theme** tokens (spacing, radius, font sizes) and the light and dark themes are in `src/shared/config/theme`. Add a token when a second component needs the same value.
-- **Text** shown to users goes through `useTranslation()` and a key in `src/shared/config/i18n/resources.ts`, in English and Portuguese. Keys are type-checked, so a missing translation fails `npm run typecheck`. Data from a backend or fixtures is not translated.
+- **Text** shown to users goes through `useTranslation()` and a key in `src/shared/config/i18n/resources.ts`, in every language the boilerplate ships (see the registry in `src/shared/config/i18n/languages.ts`). Keys are type-checked, so a missing translation fails `npm run typecheck`. Data from a backend or fixtures is not translated.
 - **Storage** goes through `storage` from `@/shared/lib`, with a named key. Do not call MMKV directly.
 - **Shared segments** (`config`, `lib`, `ui`, `api`) expose a public API in their `index.ts`. Import `@/shared/config`, not a file inside it.
 

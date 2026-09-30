@@ -1,9 +1,9 @@
 // What differs between one vendor's app and another's. Plain data only: no code, no requires,
 // and no secrets. Anything in an app can be read, so `services` holds public identifiers only.
 
-type ColorScheme = "light" | "dark";
+export type ColorScheme = "light" | "dark";
 
-type Palette = {
+export type Palette = {
   background: string;
   text: string;
   mutedText: string;
