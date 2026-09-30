@@ -1,0 +1,26 @@
+name: docs-check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Require docs for feature changes
+        env:
+          HAS_NO_DOCS_LABEL: ${{ contains(github.event.pull_request.labels.*.name, 'no-docs') }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: scripts/ci/docs-check.sh "$BASE_SHA" "$HEAD_SHA"

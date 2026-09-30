@@ -23,6 +23,7 @@ Feature-Sliced Design, checked by `npm run fsd`. Details in `docs/ai/house-style
 - Expo, EAS, and React Native APIs change between SDK versions. Check `https://docs.expo.dev/versions/v57.0.0/` before writing code that uses them.
 - Every interactive element gets a `testID` and an accessibility label, named as `docs/ai/house-style.md` describes.
 - Once the team uses Jira (repo variable `REQUIRE_TICKET_KEY` is `true`), branch names and PR titles start with the Jira ticket key. Until then, use short descriptive names.
+- Commit messages follow Conventional Commits, as in `feat(items): add a filter`. When you change a feature, update its doc in `docs/features/`, and record a weighed decision as an ADR in `docs/adr/`. See `docs/ai/docs-workflow.md`.
 - Never read, print, or commit secrets, `.env` files, or client data. Report suspected exposure to information.security@celfocus.com.
 - Do not read `node_modules`, build output, or lockfiles. Search with targeted patterns and read file ranges, not whole directories.
 
@@ -30,5 +31,7 @@ Feature-Sliced Design, checked by `npm run fsd`. Details in `docs/ai/house-style
 
 - `docs/ai/house-style.md`: code style, when to abstract, `testID` convention.
 - `docs/ai/token-discipline.md`: how to keep token use low.
+- `docs/ai/docs-workflow.md`: commits, feature docs, ADRs, and the docs check.
+- `docs/features/`: what each feature does today.
 - `docs/adr/`: why the important decisions were made.
 - `docs/plans/`: plans for larger work.

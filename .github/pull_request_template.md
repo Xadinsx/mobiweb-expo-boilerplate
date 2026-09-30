@@ -16,6 +16,10 @@
 - Clearer or murkier after the change:
 - Cost if the uses later diverge:
 
+## Docs
+
+<!-- Link the feature doc or ADR you updated, or say why none is needed and add the `no-docs` label. -->
+
 ## QA evidence
 
 <!-- Link the QA agent report and Maestro run, or say why they do not apply. -->

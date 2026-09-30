@@ -21,10 +21,10 @@ flowchart TB
 |---|---|---|---|---|---|
 | Ticket | Developer | Jira ticket | Understood scope | Ticket key known | none |
 | Brainstorm and plan | Developer with agent | Ticket, or its text read via the optional Jira MCP | For anything beyond a small fix, a plan in `docs/plans/` | Developer agrees with the plan | `/compound-engineering:ce-brainstorm`, `/compound-engineering:ce-plan` |
-| Implement | Agent, developer steers | Plan or ticket | Commits on a branch named `<TICKET-KEY>-short-name` | `npm run typecheck`, `lint`, `test`, `knip` pass | `/compound-engineering:ce-work` |
+| Implement | Agent, developer steers | Plan or ticket | Conventional commits on a branch (named `<TICKET-KEY>-short-name` once Jira is in use), the feature doc updated, an ADR if a decision was weighed | `npm run typecheck`, `lint`, `test`, `fsd`, `dead-code` pass | `/compound-engineering:ce-work` |
 | Simplify and self-review | Agent | The diff | Diff with duplication and needless abstraction removed | Reviewer-ready diff; "Decisions weighed" written | `/compound-engineering:ce-simplify-code`, `/compound-engineering:ce-code-review` |
 | Open PR | Developer | Branch | PR titled `<TICKET-KEY> short summary`, template filled | PR template complete | `/compound-engineering:ce-commit-push-pr` |
-| CI gates | CI | PR | Typecheck, lint, tests, knip, secret scan, ticket-key check results | All required checks green | none |
+| CI gates | CI | PR | Typecheck, lint, tests, FSD rules, dead code, commit format, docs check, secret scan, ticket-key check results | All required checks green | none |
 | Device checks | CI | PR build | `maestro-android` results; `qa-agent` report with a link to screenshots | Maestro green; `qa-agent` green, or an inconclusive run acknowledged by a reviewer with the `qa-acknowledged` label | none |
 | Human review | Reviewer | PR, checks, QA evidence | Approval or requested changes | Approval from a code owner | none |
 | Merge | Developer | Approved PR | Change on the main branch | Branch protection satisfied | none |
@@ -41,7 +41,7 @@ flowchart TB
 ## Review and merge rules
 
 - Every PR needs human review from a code owner. AI-generated code is never merged without it.
-- Required checks on the main branch today: `checks` and `secret-scan`, from GitHub Actions. Add `ticket-key` when Jira is in use. The repo owner sets this in GitHub branch protection.
+- Required checks on the main branch today: `checks`, `commits`, `docs-check` and `secret-scan`, from GitHub Actions. Add `ticket-key` when Jira is in use. The repo owner sets this in GitHub branch protection.
 - Maestro runs on GitHub Actions as the `maestro-android` check: it builds the release APK from the PR's code, starts an Android emulator, and runs the flows in `.maestro/flows`. It covers Android only; iOS is not tested on devices yet. EAS Workflows can run Maestro too, but only on a paid EAS plan, so this project does not use it.
 - The device checks `maestro-android` and `qa-agent` only run when a PR changes something that can affect the app: `src/`, `assets/`, the app and package config, and (for each check) its own workflow, flows or agent files. A docs-only PR skips them, and GitHub shows the skipped job as passing.
 - Not enforced yet: `maestro-android` and `qa-agent` are advisory until they have proven stable and are added to the required checks, so a red device check does not block a merge by itself and reviewers must look at it. See `docs/ai/qa-agent.md` for how the QA agent works and how to acknowledge an inconclusive run.
