@@ -21,10 +21,14 @@
     },
     "scheme": "mobiweb",
     "plugins": [
-      "expo-router"
+      [
+        "expo-router",
+        {
+          "root": "app"
+        }
+      ]
     ],
     "extra": {
-      "router": {},
       "eas": {
         "projectId": "85a3fbb2-a9d0-4af9-941d-ca302623da51"
       }

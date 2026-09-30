@@ -4,14 +4,16 @@ Expo app (Expo Router, strict TypeScript, Jest with React Native Testing Library
 
 ## Commands
 
-- `npm run typecheck`, `npm run lint`, `npm test`, `npm run dead-code`: run all four before saying a task is done.
+- `npm run typecheck`, `npm run lint`, `npm test`, `npm run fsd`, `npm run dead-code`: run all five before saying a task is done.
 - `npx expo start`: dev server.
 - `npx expo install <package>`: always use this to add dependencies, so versions match the Expo SDK.
 
 ## Layout
 
-- `src/app/`: routes only, kept thin. Every file there is a screen.
-- `src/features/<name>/`: components, data, and tests for a feature.
+Feature-Sliced Design, checked by `npm run fsd`. Details in `docs/ai/house-style.md`.
+
+- `app/` (repo root): Expo Router routes. One-line re-exports of a page, no logic.
+- `src/app`, `src/pages`, `src/entities`, `src/shared`, ...: FSD layers. Import only from lower layers, and only through a slice's `index.ts`. Add a layer or slice only when a real second use appears.
 - No `ios/` or `android/` folders: native code is generated. Configure native behavior in `app.json` and config plugins.
 
 ## Rules
@@ -27,4 +29,5 @@ Expo app (Expo Router, strict TypeScript, Jest with React Native Testing Library
 
 - `docs/ai/house-style.md`: code style, when to abstract, `testID` convention.
 - `docs/ai/token-discipline.md`: how to keep token use low.
+- `docs/adr/`: why the important decisions were made.
 - `docs/plans/`: plans for larger work.
