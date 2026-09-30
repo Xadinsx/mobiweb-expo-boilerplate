@@ -7,6 +7,11 @@ export const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.lg,
     backgroundColor: theme.colors.background,
   },
+  logo: {
+    width: 64,
+    height: 64,
+    borderRadius: theme.radius.md,
+  },
   row: {
     flexDirection: "row",
     alignItems: "center",

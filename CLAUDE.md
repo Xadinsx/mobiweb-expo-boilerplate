@@ -15,7 +15,7 @@ Feature-Sliced Design, checked by `npm run fsd`. Details in `docs/ai/house-style
 
 - `app/` (repo root): Expo Router routes. One-line re-exports of a page, no logic.
 - `src/app`, `src/pages`, `src/entities`, `src/shared`, ...: FSD layers. Import only from lower layers, and only through a slice's `index.ts`. Add a layer or slice only when a real second use appears.
-- No `ios/` or `android/` folders: native code is generated. Configure native behavior in `app.json` and config plugins.
+- No `ios/` or `android/` folders: native code is generated. Configure native behavior in `app.config.ts` (fed by the vendor config, see `docs/vendors.md`) and config plugins.
 
 ## Rules
 

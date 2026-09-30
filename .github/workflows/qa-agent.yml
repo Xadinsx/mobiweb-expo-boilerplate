@@ -26,7 +26,7 @@ jobs:
         env:
           BASE_REF: ${{ github.base_ref }}
         run: |
-          if git diff --name-only "origin/$BASE_REF" HEAD | grep -E '^(src/|assets/|app\.json$|package(-lock)?\.json$|tsconfig\.json$|scripts/agent-qa/|\.github/workflows/qa-agent\.yml$)'; then
+          if git diff --name-only "origin/$BASE_REF" HEAD | grep -E '^(src/|app/|vendors/|app\.config\.ts$|metro\.config\.js$|jest\.config\.js$|babel\.config\.js$|index\.ts$|package(-lock)?\.json$|tsconfig\.json$|scripts/agent-qa/|\.github/workflows/qa-agent\.yml$)'; then
             echo "app=true" >> "$GITHUB_OUTPUT"
           else
             echo "app=false" >> "$GITHUB_OUTPUT"

@@ -1,9 +1,15 @@
 import { useTranslation } from "react-i18next";
-import { Pressable, Switch, Text, View } from "react-native";
+import { Image, Pressable, Switch, Text, View } from "react-native";
 import { useUnistyles } from "react-native-unistyles";
 
 import { styles } from "./SettingsPage.styles";
-import { type Language, setLanguage, setTheme } from "@/shared/config";
+import {
+  type Language,
+  setLanguage,
+  setTheme,
+  vendor,
+  vendorLogo,
+} from "@/shared/config";
 
 const languages: {
   code: Language;
@@ -19,6 +25,12 @@ export function SettingsPage() {
 
   return (
     <View style={styles.container}>
+      <Image
+        testID="settings-logo-image"
+        source={vendorLogo}
+        accessibilityLabel={vendor.identity.name}
+        style={styles.logo}
+      />
       <View style={styles.row}>
         <Text style={styles.label}>{t("settings.theme")}</Text>
         <Switch

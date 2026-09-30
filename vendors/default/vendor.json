@@ -1,0 +1,38 @@
+{
+  "identity": {
+    "name": "Mobiweb Boilerplate",
+    "scheme": "mobiweb",
+    "iosBundleId": "com.mobiweb.expoboilerplate",
+    "androidPackage": "com.mobiweb.expoboilerplate",
+    "icon": "assets/icon.png",
+    "adaptiveIcon": {
+      "foreground": "assets/android-icon-foreground.png",
+      "background": "assets/android-icon-background.png",
+      "monochrome": "assets/android-icon-monochrome.png",
+      "backgroundColor": "#E6F4FE"
+    }
+  },
+  "look": {
+    "palettes": {
+      "light": {
+        "background": "#ffffff",
+        "text": "#111111",
+        "mutedText": "#555555",
+        "border": "#cccccc",
+        "accent": "#0a7ea4"
+      },
+      "dark": {
+        "background": "#121212",
+        "text": "#f2f2f2",
+        "mutedText": "#aaaaaa",
+        "border": "#333333",
+        "accent": "#4fc3f7"
+      }
+    }
+  },
+  "schemes": { "supported": ["light", "dark"], "default": "light", "userChoice": true },
+  "languages": { "supported": ["en", "pt"], "default": "en", "userChoice": true },
+  "features": {},
+  "backend": { "apiBaseUrl": "https://api.example.com" },
+  "services": {}
+}
