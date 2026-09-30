@@ -1,0 +1,110 @@
+name: qa-agent
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qa-agent-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qa-agent:
+    # Only same-repository PRs get the Claude token; forks never do.
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    environment: qa-agent
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+      - run: npm ci
+      - name: Generate the Android project
+        run: npx expo prebuild --platform android --no-install
+      - name: Build the release APK
+        working-directory: android
+        # The emulator is x86_64, so skip compiling the other CPU architectures.
+        run: ./gradlew assembleRelease --no-daemon -PreactNativeArchitectures=x86_64
+      - name: Enable KVM for the emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install the QA tools
+        run: npm install -g agent-device@0.21.16 @anthropic-ai/claude-code@2.1.285
+      - name: Prepare the agent input
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          {
+            echo "<pull-request-title>"
+            echo "$PR_TITLE"
+            echo "</pull-request-title>"
+            echo "<diff>"
+            git diff "origin/$BASE_REF" HEAD -- . ':(exclude)package-lock.json' | head -c 60000
+            echo "</diff>"
+          } > qa-input.txt
+      - name: Run the QA agent on an emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          # The token is only visible to this step, never to the build steps above.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: "1"
+        with:
+          api-level: 34
+          arch: x86_64
+          disable-animations: true
+          script: |
+            adb install android/app/build/outputs/apk/release/app-release.apk
+            mkdir -p qa-artifacts
+            scripts/agent-qa/run-agent.sh
+      - name: Upload screenshots and agent output
+        id: upload
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-agent
+          path: |
+            qa-artifacts
+            qa-claude-output.json
+            qa-claude-error.log
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Write the report
+        if: ${{ !cancelled() }}
+        env:
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          HAS_ACK=false
+          if gh pr view "$PR_NUMBER" --json labels --jq '.labels[].name' | grep -qx qa-acknowledged; then
+            HAS_ACK=true
+          fi
+          export HAS_ACK
+          node scripts/agent-qa/report.mjs
+      - name: Comment on the pull request
+        if: ${{ !cancelled() }}
+        run: gh pr comment "$PR_NUMBER" --body-file qa-comment.md --edit-last --create-if-none
+      - name: Fail the check unless the QA agent passed
+        if: ${{ !cancelled() }}
+        run: test "$(cat qa-status.txt)" = pass

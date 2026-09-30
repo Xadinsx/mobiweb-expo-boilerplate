@@ -8,3 +8,4 @@
 /.eas/workflows/        @your-org/your-team
 /scripts/agent-qa/      @your-org/your-team
 /.claude/settings.json  @your-org/your-team
+/CLAUDE.md              @your-org/your-team
