@@ -29,6 +29,23 @@ Every PR that adds or removes an abstraction, or merges or leaves duplicated cod
 
 A human reviewer signs off on that judgment. Tools such as `knip` only find candidates; they do not decide.
 
+## Architecture: Feature-Sliced Design
+
+The layout follows Feature-Sliced Design (FSD); `docs/adr/0001-feature-sliced-design.md` says why. `npm run fsd` (Steiger) is the judge, and CI runs it.
+
+- **Layers**, from top to bottom: `app`, `pages`, `widgets`, `features`, `entities`, `shared`. Code may import only from layers below its own. Slices on the same layer never import each other.
+- **Add layers only when needed.** The repo has the layers it uses. Create `widgets`, `features` or `shared` when the first real second use appears, not before.
+- **Where does it go?**
+  - A whole screen goes in `pages/<name>`.
+  - A user action that several pages reuse goes in `features/<name>`.
+  - A business object (its type, data access, and its row or card UI) goes in `entities/<name>`.
+  - Generic code with no business meaning (UI kit, helpers, config) goes in `shared`.
+  - Providers and app start-up go in `app`.
+- **Segments** group code inside a slice by purpose: `ui`, `model`, `api`, `lib`, `config`. The `app` layer has no `ui` segment; its segments are named for what they hold, such as `navigation`.
+- **Public API.** Every slice exports what others may use from its `index.ts`. Import another slice as `@/entities/item`, never from a file inside it.
+- **Routes** in the root `app/` folder are one-line re-exports of a page. They hold no logic.
+- **Tests** sit next to the file they test (`ItemsList.test.tsx`). Route-level tests live in `src/app/routes.test.tsx`.
+
 ## Test IDs and accessibility
 
 Every interactive element, and every text or list a test needs to read, has a `testID`. Interactive elements also have an accessibility label. Maestro and the QA agent depend on these.
@@ -39,4 +56,4 @@ Examples: `items-main-list`, `items-row-2-button`, `detail-title-text`.
 
 ## Checks
 
-Run `npm run typecheck`, `npm run lint`, `npm test`, and `npm run dead-code` before opening a PR. Formatting comes from Prettier through ESLint; run `npx eslint . --fix` to apply it.
+Run `npm run typecheck`, `npm run lint`, `npm test`, `npm run fsd`, and `npm run dead-code` before opening a PR. Formatting comes from Prettier through ESLint; run `npx eslint . --fix` to apply it.

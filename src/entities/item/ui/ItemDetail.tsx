@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import type { Item } from "./items";
+import type { Item } from "../model/item";
 
 type Props = {
   item: Item;

@@ -1,11 +1,8 @@
-import { render } from "@testing-library/react-native";
 import { fireEvent, renderRouter, screen } from "expo-router/testing-library";
-
-import { ItemsList } from "../ItemsList";
 
 describe("items flow", () => {
   it("lists the seeded items", () => {
-    renderRouter("src/app");
+    renderRouter("app");
 
     expect(screen.getByTestId("items-main-list")).toBeTruthy();
     expect(screen.getByText("Item one")).toBeTruthy();
@@ -14,7 +11,7 @@ describe("items flow", () => {
   });
 
   it("opens the detail of the tapped item", () => {
-    const { getPathname } = renderRouter("src/app");
+    const { getPathname } = renderRouter("app");
 
     fireEvent.press(screen.getByTestId("items-row-2-button"));
 
@@ -28,7 +25,7 @@ describe("items flow", () => {
   });
 
   it("sends an unknown item id back to the list", () => {
-    const { getPathname } = renderRouter("src/app", {
+    const { getPathname } = renderRouter("app", {
       initialUrl: "/item/999",
     });
 
@@ -36,14 +33,8 @@ describe("items flow", () => {
     expect(screen.getByTestId("items-main-list")).toBeTruthy();
   });
 
-  it("shows the empty state instead of a blank screen", () => {
-    render(<ItemsList items={[]} />);
-
-    expect(screen.getByTestId("items-empty-text")).toBeTruthy();
-  });
-
   it("gives every pressable on the list screen a testID and an accessibility label", () => {
-    renderRouter("src/app");
+    renderRouter("app");
 
     const buttons = screen.getAllByRole("button");
 

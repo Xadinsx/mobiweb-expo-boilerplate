@@ -20,9 +20,10 @@ npx expo start
 | `npm run typecheck` | TypeScript, strict |
 | `npm run lint` | ESLint with the Callstack config and Prettier |
 | `npm test` | Jest and React Native Testing Library |
+| `npm run fsd` | Steiger: Feature-Sliced Design import rules |
 | `npm run dead-code` | knip: unused files, exports and dependencies |
 
-Run all four before opening a PR. CI runs them too.
+Run all five before opening a PR. CI runs them too.
 
 ## Working with Claude Code
 
@@ -31,13 +32,14 @@ Start with [`docs/ai/onboarding.md`](docs/ai/onboarding.md). The rest of [`docs/
 - [`lifecycle.md`](docs/ai/lifecycle.md): the path from ticket to release, and which checks gate a merge.
 - [`house-style.md`](docs/ai/house-style.md): how to keep the code simple, when to abstract, and the test id convention.
 - [`token-discipline.md`](docs/ai/token-discipline.md): keeping token use low.
+- [`../adr/`](docs/adr/): why the important decisions were made (architecture decision records).
 - [`qa-agent.md`](docs/ai/qa-agent.md): the QA agent that checks the app on an emulator for each PR.
 
 [`CLAUDE.md`](CLAUDE.md) holds the short rules Claude Code reads in every session.
 
 ## Checks on a pull request
 
-- `checks`: typecheck, lint, tests, dead code.
+- `checks`: typecheck, lint, tests, Feature-Sliced Design rules, dead code.
 - `secret-scan`: gitleaks over the history.
 - `ticket-key`: Jira key in the branch and title, only when the repository variable `REQUIRE_TICKET_KEY` is `true`.
 - `maestro-android` and `qa-agent`: build the app and test it on an Android emulator. They run only when a PR can change the app.

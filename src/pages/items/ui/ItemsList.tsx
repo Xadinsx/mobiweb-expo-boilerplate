@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import { FlatList, Pressable, StyleSheet, Text } from "react-native";
 
-import type { Item } from "./items";
+import type { Item } from "@/entities/item";
 
 const ROW_BORDER_COLOR = "#ccc";
 

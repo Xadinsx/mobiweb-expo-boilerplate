@@ -24,6 +24,7 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm test
+      - run: npm run fsd
       - run: npm run dead-code
 
   secret-scan:
