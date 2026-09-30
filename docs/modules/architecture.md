@@ -48,4 +48,4 @@ decision: ../adr/0001-feature-sliced-design.md
 
 ## Leftover checks
 
-After removal, `grep -rn "steiger" . --include=package.json --include=*.mjs --include=*.yml --exclude-dir=node_modules` must find nothing.
+After removal, `grep -rn "steiger" . --include="package.json" --include="*.mjs" --include="*.yml" --exclude-dir=node_modules` must find nothing.
