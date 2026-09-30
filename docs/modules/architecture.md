@@ -15,7 +15,7 @@ decision: ../adr/0001-feature-sliced-design.md
 
 ## Where the app depends on it
 
-- `steiger` in `package.json`, `steiger.config.mjs` and `.github/workflows/ci.yml`.
+- `steiger` in `package.json`, `steiger.config.mjs`, the `files: ["steiger.config.mjs"]` override in `eslint.config.mjs`, and `.github/workflows/ci.yml`.
 - `index.ts` files that are the public API of each slice and each shared segment.
 - Imports written as `@/<layer>/<slice>`.
 - `app/` route files that re-export a page, and `src/app/routes.test.tsx`.
