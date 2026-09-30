@@ -7,6 +7,7 @@ Expo app (Expo Router, strict TypeScript, Jest with React Native Testing Library
 - `npm run typecheck`, `npm run lint`, `npm test`, `npm run fsd`, `npm run dead-code`: run all five before saying a task is done.
 - `npx expo start`: dev server.
 - `npx expo install <package>`: always use this to add dependencies, so versions match the Expo SDK.
+- Node 22 ships npm 10, which is what CI uses. If your npm is newer, regenerate the lockfile with `npx npm@10 install` before committing dependency changes, or `npm ci` can fail in CI with a lockfile mismatch.
 
 ## Layout
 
