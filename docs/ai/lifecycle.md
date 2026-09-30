@@ -42,6 +42,7 @@ flowchart TB
 
 - Every PR needs human review from a code owner. AI-generated code is never merged without it.
 - Required checks on the main branch today: `checks` and `secret-scan`, from GitHub Actions. Add `ticket-key` when Jira is in use. The repo owner sets this in GitHub branch protection.
+- GitHub shows a skipped EAS job as passing. For each platform, exactly one of `maestro_<platform>_reused_build` and `maestro_<platform>_fresh_build` should run, and the other is skipped on purpose. If both show as skipped, Maestro did not run.
 - Not enforced yet: the Maestro run on EAS is advisory until it is added as a required status under the name GitHub shows for it, and the QA agent does not exist yet (see `docs/plans/`). Until then, a red device check does not block a merge by itself, so reviewers must look at it.
 - Before turning on "Require review from Code Owners", replace the `@your-org/your-team` placeholder in `.github/CODEOWNERS` with the real team. Until then, code owner review is not enforced.
 - The reviewer reads the diff and the "Decisions weighed" section, not only the green checks. A passing QA agent report is evidence, not approval.

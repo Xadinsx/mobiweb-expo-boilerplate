@@ -33,12 +33,20 @@ jobs:
       platform: android
       profile: e2e-test
 
-  maestro_android:
-    needs: [repack_android, build_android]
-    after: [repack_android, build_android]
+  # One of the two Maestro jobs runs per platform. A job whose needed job was skipped
+  # is skipped too, so each one depends only on the job that produces its build.
+  maestro_android_reused_build:
+    needs: [repack_android]
     type: maestro
     params:
-      build_id: ${{ needs.repack_android.outputs.build_id || needs.build_android.outputs.build_id }}
+      build_id: ${{ needs.repack_android.outputs.build_id }}
+      flow_path: .maestro/flows
+
+  maestro_android_fresh_build:
+    needs: [build_android]
+    type: maestro
+    params:
+      build_id: ${{ needs.build_android.outputs.build_id }}
       flow_path: .maestro/flows
 
   get_ios_build:
@@ -65,10 +73,18 @@ jobs:
       platform: ios
       profile: e2e-test
 
-  maestro_ios:
-    needs: [repack_ios, build_ios]
-    after: [repack_ios, build_ios]
+  # One of the two Maestro jobs runs per platform. A job whose needed job was skipped
+  # is skipped too, so each one depends only on the job that produces its build.
+  maestro_ios_reused_build:
+    needs: [repack_ios]
     type: maestro
     params:
-      build_id: ${{ needs.repack_ios.outputs.build_id || needs.build_ios.outputs.build_id }}
+      build_id: ${{ needs.repack_ios.outputs.build_id }}
+      flow_path: .maestro/flows
+
+  maestro_ios_fresh_build:
+    needs: [build_ios]
+    type: maestro
+    params:
+      build_id: ${{ needs.build_ios.outputs.build_id }}
       flow_path: .maestro/flows
