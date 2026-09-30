@@ -31,6 +31,8 @@ Before writing anything, refuse and say what to do instead when:
 - A language is not in the registry `src/shared/config/i18n/languages.ts`. Offer to add it (step 4) or to drop it.
 - A scheme's palette is missing, or a value is a secret.
 
+If `npm run vendor-isolation` later flags a value of the new vendor that also appears in library text (a very short scheme, for example), choose a more distinctive value.
+
 ## 3. Write the vendor
 
 Copy the shape of `vendors/default/` and `vendors/sample-single/`:
