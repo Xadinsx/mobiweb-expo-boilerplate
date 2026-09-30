@@ -21,7 +21,7 @@ Update the doc in the same PR that changes the feature, so it never lags. Write 
 
 ## Decisions (ADRs)
 
-Write an ADR in `docs/adr/` when you weighed alternatives and the choice would be costly to reverse, or when a new developer would ask why. See `docs/adr/README.md`. The "Decisions weighed" section of the PR is for small choices; an ADR is for the ones that outlive the PR.
+Write an ADR in `docs/adr/` when you weighed alternatives and the choice would be costly to reverse, or when a new developer would ask why. See `docs/adr/README.md`. Declining a recommended default from `docs/modules/` is always an ADR (a deviation). The "Decisions weighed" section of the PR is for small choices; an ADR is for the ones that outlive the PR.
 
 ## The docs check
 
