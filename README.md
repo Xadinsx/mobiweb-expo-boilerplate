@@ -10,8 +10,10 @@ You need Node 22.12 or newer.
 
 ```bash
 npm ci
-npx expo start
+npx expo run:android   # or: npx expo run:ios
 ```
+
+The app uses native modules (Unistyles, MMKV), so Expo Go does not work. `expo run:android` builds a development app and starts it; after that, `npx expo start` reopens the dev server.
 
 ## Commands
 

@@ -1,7 +1,7 @@
 import callstackConfig from "@callstack/eslint-config/react-native.flat.js";
 
 export default [
-  { ignores: ["node_modules", ".expo", "dist", "eslint.config.mjs"] },
+  { ignores: ["node_modules", ".expo", "dist", "eslint.config.mjs", "babel.config.js"] },
   ...callstackConfig,
   {
     settings: {

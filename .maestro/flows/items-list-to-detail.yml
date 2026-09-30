@@ -1,6 +1,7 @@
 appId: com.mobiweb.expoboilerplate
 ---
-- launchApp
+- launchApp:
+    clearState: true
 - assertVisible:
     id: items-main-list
 - tapOn:

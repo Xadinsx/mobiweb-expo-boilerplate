@@ -26,7 +26,8 @@
         {
           "root": "app"
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "extra": {
       "eas": {

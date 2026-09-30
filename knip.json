@@ -1,6 +1,14 @@
 {
   "$schema": "https://unpkg.com/knip@latest/schema.json",
-  "entry": ["app/**/*.tsx", "steiger.config.mjs"],
-  "project": ["app/**/*.{ts,tsx}", "src/**/*.{ts,tsx}"],
-  "ignoreDependencies": ["expo-updates"]
+  "entry": [
+    "app/**/*.tsx",
+    "steiger.config.mjs"
+  ],
+  "project": [
+    "app/**/*.{ts,tsx}",
+    "src/**/*.{ts,tsx}"
+  ],
+  "ignoreDependencies": [
+    "expo-updates"
+  ]
 }

@@ -1,0 +1,9 @@
+appId: com.mobiweb.expoboilerplate
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    id: items-settings-link
+- tapOn:
+    id: settings-language-pt-button
+- assertVisible: Idioma
