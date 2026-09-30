@@ -25,7 +25,7 @@ flowchart TB
 | Simplify and self-review | Agent | The diff | Diff with duplication and needless abstraction removed | Reviewer-ready diff; "Decisions weighed" written | `/compound-engineering:ce-simplify-code`, `/compound-engineering:ce-code-review` |
 | Open PR | Developer | Branch | PR titled `<TICKET-KEY> short summary`, template filled | PR template complete | `/compound-engineering:ce-commit-push-pr` |
 | CI gates | CI | PR | Typecheck, lint, tests, knip, secret scan, ticket-key check results | All required checks green | none |
-| Device checks | CI | PR build | Maestro results now; QA agent report with screenshots once it exists | Maestro green; when the QA agent exists, its check green or an inconclusive run acknowledged by a reviewer | none |
+| Device checks | CI | PR build | `maestro-android` results now; QA agent report with screenshots once it exists | Maestro green; when the QA agent exists, its check green or an inconclusive run acknowledged by a reviewer | none |
 | Human review | Reviewer | PR, checks, QA evidence | Approval or requested changes | Approval from a code owner | none |
 | Merge | Developer | Approved PR | Change on the main branch | Branch protection satisfied | none |
 | Release | A maintainer, by hand | Merged main branch | Production build submitted to the stores | Store submission accepted | EAS production build and submit; not automated here |
@@ -42,7 +42,7 @@ flowchart TB
 
 - Every PR needs human review from a code owner. AI-generated code is never merged without it.
 - Required checks on the main branch today: `checks` and `secret-scan`, from GitHub Actions. Add `ticket-key` when Jira is in use. The repo owner sets this in GitHub branch protection.
-- GitHub shows a skipped EAS job as passing. For each platform, exactly one of `maestro_<platform>_reused_build` and `maestro_<platform>_fresh_build` should run, and the other is skipped on purpose. If both show as skipped, Maestro did not run.
-- Not enforced yet: the Maestro run on EAS is advisory until it is added as a required status under the name GitHub shows for it, and the QA agent does not exist yet (see `docs/plans/`). Until then, a red device check does not block a merge by itself, so reviewers must look at it.
+- Maestro runs on GitHub Actions as the `maestro-android` check: it builds the release APK from the PR's code, starts an Android emulator, and runs the flows in `.maestro/flows`. It covers Android only; iOS is not tested on devices yet. EAS Workflows can run Maestro too, but only on a paid EAS plan, so this project does not use it.
+- Not enforced yet: `maestro-android` is advisory until it has proven stable and is added to the required checks, and the QA agent does not exist yet (see `docs/plans/`). Until then, a red device check does not block a merge by itself, so reviewers must look at it.
 - Before turning on "Require review from Code Owners", replace the `@your-org/your-team` placeholder in `.github/CODEOWNERS` with the real team. Until then, code owner review is not enforced.
 - The reviewer reads the diff and the "Decisions weighed" section, not only the green checks. A passing QA agent report is evidence, not approval.
