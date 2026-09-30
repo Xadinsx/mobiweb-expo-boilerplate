@@ -25,7 +25,7 @@ Set by the repo owner before the first trial run. Replace them with measured val
 |---|---|
 | Model cost per PR run, hard ceiling | $0.50 (enforced with `--max-budget-usd`) |
 | Model cost per PR run, target | $0.15 or less |
-| Agent turns per run | 25 |
+| Agent turns per run | 40 |
 | Monthly cap | $25 planned. The agent runs on the owner's Claude subscription, which has no dollar cap, so watch usage in the Claude settings. |
 
 The cost the job reports is what the same usage would cost through the API. After the first 5 to 10 real PRs, record the measured average and worst case here, and move the per-run ceiling to about twice the worst observed run.
@@ -64,4 +64,4 @@ What the trial showed:
 - One turn already costs about $0.04 at the start because of the fixed instructions, so cost grows with turns rather than with the size of the diff.
 - Each run adds about 10 minutes of GitHub Actions time, because the job builds its own APK next to the Maestro job.
 
-Open follow-ups: choose whether to lower the per-run ceiling (twice the worst run is about $0.15) or raise the turn limit, and re-measure after a few more real PRs.
+The turn limit was raised from 25 to 40 after trial A. Open follow-up: choose whether to lower the per-run ceiling (twice the worst run is about $0.15), and re-measure after a few more real PRs.
