@@ -27,6 +27,20 @@ jobs:
       - run: npm run fsd
       - run: npm run dead-code
 
+  commits:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Check the commit messages follow Conventional Commits
+        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }}
+
   secret-scan:
     runs-on: ubuntu-latest
     steps:

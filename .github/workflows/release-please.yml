@@ -1,0 +1,23 @@
+name: release-please
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    # Off until the owner opts in: set the repository variable RELEASE_PLEASE_ENABLED to true.
+    # See docs/ai/docs-workflow.md before turning it on.
+    if: ${{ vars.RELEASE_PLEASE_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          # A token from a personal access token lets the release PR trigger the required checks.
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

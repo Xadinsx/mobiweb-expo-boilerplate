@@ -11,3 +11,7 @@ How to add one:
 | ADR | Decision |
 |---|---|
 | [0001](0001-feature-sliced-design.md) | Feature-Sliced Design with routes in a root `app/` folder |
+| [0002](0002-claude-code-with-compound-engineering.md) | Claude Code with the Compound Engineering plugin as the AI workflow |
+| [0003](0003-device-tests-on-github-actions.md) | Device tests on GitHub Actions, not EAS Workflows |
+| [0004](0004-qa-agent-claude-code.md) | The QA agent is Claude Code driving agent-device |
+| [0005](0005-npm-with-npm-10-lockfile.md) | npm as the package manager, lockfile written by npm 10 |

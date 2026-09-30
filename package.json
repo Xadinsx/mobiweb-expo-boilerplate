@@ -1,6 +1,6 @@
 {
   "name": "mobiweb-expo-boilerplate",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "expo-router/entry",
   "dependencies": {
     "expo": "~57.0.26",
@@ -15,6 +15,8 @@
   },
   "devDependencies": {
     "@callstack/eslint-config": "^15.0.0",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
     "@feature-sliced/steiger-plugin": "^0.8.0",
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "29.5.14",

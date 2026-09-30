@@ -33,6 +33,7 @@ Start with [`docs/ai/onboarding.md`](docs/ai/onboarding.md). The rest of [`docs/
 - [`house-style.md`](docs/ai/house-style.md): how to keep the code simple, when to abstract, and the test id convention.
 - [`token-discipline.md`](docs/ai/token-discipline.md): keeping token use low.
 - [`../adr/`](docs/adr/): why the important decisions were made (architecture decision records).
+- [`docs-workflow.md`](docs/ai/docs-workflow.md): commit format, feature docs, ADRs and the docs check.
 - [`qa-agent.md`](docs/ai/qa-agent.md): the QA agent that checks the app on an emulator for each PR.
 
 [`CLAUDE.md`](CLAUDE.md) holds the short rules Claude Code reads in every session.
@@ -40,6 +41,8 @@ Start with [`docs/ai/onboarding.md`](docs/ai/onboarding.md). The rest of [`docs/
 ## Checks on a pull request
 
 - `checks`: typecheck, lint, tests, Feature-Sliced Design rules, dead code.
+- `commits`: Conventional Commits, checked with commitlint.
+- `docs-check`: feature changes need a feature doc or an ADR (label `no-docs` to skip).
 - `secret-scan`: gitleaks over the history.
 - `ticket-key`: Jira key in the branch and title, only when the repository variable `REQUIRE_TICKET_KEY` is `true`.
 - `maestro-android` and `qa-agent`: build the app and test it on an Android emulator. They run only when a PR can change the app.
