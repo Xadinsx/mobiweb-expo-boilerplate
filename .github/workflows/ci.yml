@@ -26,6 +26,7 @@ jobs:
       - run: npm test
       - run: npm run fsd
       - run: npm run dead-code
+      - run: npm run vendor-isolation
 
   commits:
     runs-on: ubuntu-latest

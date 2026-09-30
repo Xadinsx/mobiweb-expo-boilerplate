@@ -45,6 +45,7 @@ jobs:
       pull-requests: write
     env:
       PR_NUMBER: ${{ github.event.pull_request.number }}
+      REFERENCE_VENDOR: ${{ vars.REFERENCE_VENDOR }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
@@ -60,6 +61,12 @@ jobs:
           java-version: 17
       - uses: gradle/actions/setup-gradle@v4
       - run: npm ci
+      - name: Choose the reference vendor
+        # Every vendor builds through the same code; CI builds one of them (repository variable REFERENCE_VENDOR).
+        run: |
+          VENDOR="${REFERENCE_VENDOR:-default}"
+          echo "APP_VARIANT=$VENDOR" >> "$GITHUB_ENV"
+          echo "APP_ID=$(node -p "require('./vendors/$VENDOR/vendor.json').identity.androidPackage")" >> "$GITHUB_ENV"
       - name: Generate the Android project
         run: npx expo prebuild --platform android --no-install
       - name: Build the release APK

@@ -40,6 +40,15 @@ Unknown names fail with a list of the vendors that exist. Local runs, CI and EAS
 - **Services:** public identifiers only, such as a crash-reporting DSN. Anything inside an app can be read, so never put a secret in a vendor.
 - **`eas`** (optional): owner, project id and slug, for a vendor with its own EAS project. Other vendors use the boilerplate's.
 
+## Tests and checks per vendor
+
+- `npm test` finds every folder in `vendors/`, validates it, and checks that names, schemes and ids are unique.
+- `npm run vendor-isolation` (in the `checks` job) exports each vendor's Android bundle and fails if it contains another vendor's name, scheme, ids, API URL or asset files. Values one vendor shares with or contains from another also fail, because a search for them could not tell the vendors apart.
+- Device checks build one vendor, the reference vendor (repository variable `REFERENCE_VENDOR`, `default` when unset). To try another vendor on a device, change the variable or run it locally with `APP_VARIANT`.
+- Shared Maestro flows in `.maestro/flows` use `appId: ${APP_ID}`. A flow that only fits some vendors goes in `vendors/<name>/maestro/`.
+- `vendors/<name>/qa-notes.md` tells the QA agent what the vendor's app looks like and what it can do.
+- `sample-single` exists to prove the model: one language, light only, no user choices, its own brand and ids. Delete it when you start a real project only if you no longer want that proof.
+
 ## Not supported yet
 
 Custom fonts and splash screens are not part of a vendor yet, because the project has no font or splash module. They are added with those modules.

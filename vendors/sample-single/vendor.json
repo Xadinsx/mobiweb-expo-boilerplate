@@ -1,0 +1,31 @@
+{
+  "identity": {
+    "name": "Sample Single",
+    "scheme": "samplesingle",
+    "iosBundleId": "com.example.samplesingle",
+    "androidPackage": "com.example.samplesingle",
+    "icon": "assets/icon.png",
+    "adaptiveIcon": {
+      "foreground": "assets/android-icon-foreground.png",
+      "background": "assets/android-icon-background.png",
+      "monochrome": "assets/android-icon-monochrome.png",
+      "backgroundColor": "#1B7F4C"
+    }
+  },
+  "look": {
+    "palettes": {
+      "light": {
+        "background": "#fdf3d8",
+        "text": "#1f2a24",
+        "mutedText": "#5c6b62",
+        "border": "#d9cfae",
+        "accent": "#1b7f4c"
+      }
+    }
+  },
+  "schemes": { "supported": ["light"], "default": "light", "userChoice": false },
+  "languages": { "supported": ["en"], "default": "en", "userChoice": false },
+  "features": {},
+  "backend": { "apiBaseUrl": "https://api.samplesingle.example" },
+  "services": {}
+}

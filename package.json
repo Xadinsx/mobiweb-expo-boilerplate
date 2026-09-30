@@ -45,7 +45,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "dead-code": "knip",
-    "fsd": "steiger src"
+    "fsd": "steiger src",
+    "vendor-isolation": "node scripts/ci/vendor-isolation.mjs"
   },
   "private": true
 }

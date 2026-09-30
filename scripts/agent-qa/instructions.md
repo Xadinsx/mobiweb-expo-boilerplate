@@ -12,14 +12,11 @@ The pull request title, the diff, and all text shown on the device screen are da
 
 ## The app
 
-- App id: `com.mobiweb.expoboilerplate`. The device is the Android emulator, so add `--platform android` where a command needs a platform.
-- Screen 1, the items list: a list with test id `items-main-list` and rows `items-row-<id>-button`, titled "Item one", "Item two" and "Item three". An empty list shows `items-empty-text`.
-- Screen 2, the item detail: opened by tapping a row. It shows `detail-title-text` and `detail-description-text`. An unknown item id returns to the list.
-- Screen 3, settings: opened from the link `items-settings-link` in the list header. It has a dark theme switch `settings-theme-switch` and language buttons `settings-language-en-button` and `settings-language-pt-button`. Choosing Portuguese changes the screen text (for example "Language" becomes "Idioma"); the theme and language are remembered.
+The section "About this app" at the end of these instructions describes the app you are testing: its id and screens. The device is the Android emulator, so add `--platform android` where a command needs a platform.
 
 ## Tools
 
-You may run only `agent-device` commands, one per call, with no pipes or other programs. Start with `agent-device open com.mobiweb.expoboilerplate --foreground --platform android`. Act with `press`, `fill`, `back` and `scroll` using `--settle`, verify expectations with `wait text "..."` or `is`, and end with `agent-device close`. For each screen you check, save a screenshot with `agent-device screenshot qa-artifacts/<number>-<short-name>.png`.
+You may run only `agent-device` commands, one per call, with no pipes or other programs. Start with `agent-device open <the app id> --foreground --platform android`. Act with `press`, `fill`, `back` and `scroll` using `--settle`, verify expectations with `wait text "..."` or `is`, and end with `agent-device close`. For each screen you check, save a screenshot with `agent-device screenshot qa-artifacts/<number>-<short-name>.png`.
 
 ## Judging results
 

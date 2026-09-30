@@ -40,6 +40,7 @@ jobs:
     timeout-minutes: 45
     env:
       MAESTRO_VERSION: 2.10.0
+      REFERENCE_VENDOR: ${{ vars.REFERENCE_VENDOR }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -52,6 +53,12 @@ jobs:
           java-version: 17
       - uses: gradle/actions/setup-gradle@v4
       - run: npm ci
+      - name: Choose the reference vendor
+        # Every vendor builds through the same code; CI builds one of them (repository variable REFERENCE_VENDOR).
+        run: |
+          VENDOR="${REFERENCE_VENDOR:-default}"
+          echo "APP_VARIANT=$VENDOR" >> "$GITHUB_ENV"
+          echo "APP_ID=$(node -p "require('./vendors/$VENDOR/vendor.json').identity.androidPackage")" >> "$GITHUB_ENV"
       - name: Generate the Android project
         run: npx expo prebuild --platform android --no-install
       - name: Build the release APK
@@ -75,7 +82,7 @@ jobs:
           disable-animations: true
           script: |
             adb install android/app/build/outputs/apk/release/app-release.apk
-            maestro test .maestro/flows --format junit --output maestro-report.xml
+            scripts/ci/run-maestro.sh
       - name: Upload the Maestro report and screenshots
         if: always()
         uses: actions/upload-artifact@v4

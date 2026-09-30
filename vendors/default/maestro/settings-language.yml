@@ -1,4 +1,4 @@
-appId: com.mobiweb.expoboilerplate
+appId: ${APP_ID}
 ---
 - launchApp:
     clearState: true

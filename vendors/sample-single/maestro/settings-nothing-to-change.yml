@@ -1,0 +1,10 @@
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+- tapOn:
+    id: items-settings-link
+- assertVisible:
+    id: settings-nothing-text
+- assertNotVisible:
+    id: settings-theme-switch
