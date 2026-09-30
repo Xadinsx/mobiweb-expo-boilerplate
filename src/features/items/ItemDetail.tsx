@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "600",
   },
 });
