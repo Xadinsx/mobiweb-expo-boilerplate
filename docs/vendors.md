@@ -14,6 +14,10 @@ vendors/<name>/assets/       icon, adaptive icon and other images
 
 `vendor.json` is plain data because Expo evaluates `app.config.ts` with Node, which cannot load other TypeScript files. Runtime images cannot be JSON, so they sit in `runtime.ts`.
 
+## Adding a vendor
+
+Run the `add-vendor` skill (`/add-vendor` in Claude Code). It asks for the vendor's identity, look, schemes, languages, features and backend, writes `vendors/<name>/`, adds an `eas.json` profile, and runs the checks until they pass. Doing it by hand means creating the same files by copying `vendors/sample-single/`.
+
 ## Choosing a vendor
 
 Set `APP_VARIANT` to the vendor's folder name. It defaults to `default`.
