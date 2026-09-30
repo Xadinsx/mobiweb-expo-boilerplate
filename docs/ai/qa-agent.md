@@ -48,4 +48,20 @@ The plan was to try Vercel Eve with a model API key. The approved route is the o
 
 ## Result of the trial
 
-Not run yet.
+Run on 2026-09-30 with Claude Code 2.1.285 and the `haiku` model, on three pull requests. Costs are what the usage would cost through the API.
+
+| Pull request | Change | Report | Turns | Time | Model cost |
+|---|---|---|---|---|---|
+| QA agent workflow itself | CI, scripts and docs only | pass, nothing to check | 1 | 9 s | $0.040 |
+| Trial A | Larger detail title | pass, 5 checks on list and detail | 24 | 73 s | $0.075 |
+| Trial B | Deliberate bug: detail always shows item one | product issue, named the cause | 18 | 42 s | $0.055 |
+
+What the trial showed:
+
+- The agent found the deliberate bug and named its cause. On trial B the Jest tests and the Maestro flow failed too, so three independent checks agreed.
+- Cost stayed under the $0.15 target on all three runs. The worst run cost $0.075, about 15% of the ceiling.
+- Trial A used 24 of the 25 allowed turns for a one-line change. A larger PR could hit the turn limit before it finishes. If that happens, the run is inconclusive rather than wrong, but consider raising the limit.
+- One turn already costs about $0.04 at the start because of the fixed instructions, so cost grows with turns rather than with the size of the diff.
+- Each run adds about 10 minutes of GitHub Actions time, because the job builds its own APK next to the Maestro job.
+
+Open follow-ups: choose whether to lower the per-run ceiling (twice the worst run is about $0.15) or raise the turn limit, and re-measure after a few more real PRs.
