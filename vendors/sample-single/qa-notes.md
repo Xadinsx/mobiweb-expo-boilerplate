@@ -1,0 +1,4 @@
+- App id: `${APP_ID}`.
+- Screen 1, the items list: same as the other vendors. A list with test id `items-main-list` and rows `items-row-<id>-button`, titled "Item one", "Item two" and "Item three".
+- Screen 2, the item detail: opened by tapping a row. It shows `detail-title-text` and `detail-description-text`.
+- Screen 3, settings: opened from the link `items-settings-link`. This vendor is light only and English only, and users cannot choose, so there is no theme switch and no language buttons. The screen shows the logo and the text with test id `settings-nothing-text`. The list is on a cream background.

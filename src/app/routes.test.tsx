@@ -33,6 +33,15 @@ describe("items flow", () => {
     expect(screen.getByTestId("items-main-list")).toBeTruthy();
   });
 
+  it("opens the settings page from the items header", () => {
+    const { getPathname } = renderRouter("app");
+
+    fireEvent.press(screen.getByTestId("items-settings-link"));
+
+    expect(getPathname()).toBe("/settings");
+    expect(screen.getByTestId("settings-theme-switch")).toBeTruthy();
+  });
+
   it("gives every pressable on the list screen a testID and an accessibility label", () => {
     renderRouter("app");
 

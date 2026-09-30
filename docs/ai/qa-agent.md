@@ -5,7 +5,7 @@ On every same-repository pull request that changes the app (see `docs/ai/lifecyc
 ## How it works
 
 1. The job builds the release APK from the PR's code and installs it on an API 34 emulator.
-2. Claude Code runs headless with the instructions in `scripts/agent-qa/instructions.md`. It gets the PR title and diff as data, and it may run only `agent-device` commands (open the app, tap, read the screen, take screenshots). It has no shell, file or network tools.
+2. Claude Code runs headless with the instructions in `scripts/agent-qa/instructions.md` followed by the reference vendor's app notes (`vendors/<name>/qa-notes.md`, with the app id filled in). It gets the PR title and diff as data, and it may run only `agent-device` commands (open the app, tap, read the screen, take screenshots). It has no shell, file or network tools.
 3. It returns one JSON report: `pass`, `product_issue`, or `inconclusive`. `scripts/agent-qa/report.mjs` checks that report, writes the PR comment, and decides the check result.
 4. The comment is created once and edited on later pushes.
 

@@ -8,7 +8,7 @@ The sample app shows a list of items. Tapping an item opens its detail. It exist
 
 ## Behavior
 
-- The list shows every item by its title. An empty list shows a "No items to show" message, not a blank screen.
+- The list shows every item by its title. An empty list shows a "No items to show" message (translated), not a blank screen.
 - Tapping a row opens the detail, which shows the item's title and description.
 - Opening the detail of an id that does not exist sends the user back to the list.
 - The data is local and fixed; nothing is fetched.
@@ -26,7 +26,8 @@ The sample app shows a list of items. Tapping an item opens its detail. It exist
 - `src/pages/items` holds the list page and its `ItemsList` component.
 - `src/pages/item-detail` reads the id from the route and shows the item.
 - The route files in `app/` re-export the pages.
-- Test ids: `items-main-list`, `items-row-<id>-button`, `items-empty-text`, `detail-title-text`, `detail-description-text`.
+- Test ids: `items-main-list`, `items-row-<id>-button`, `items-empty-text`, `items-settings-link`, `detail-title-text`, `detail-description-text`.
+- The header also has a link to [Settings](settings.md).
 
 ## Tests
 

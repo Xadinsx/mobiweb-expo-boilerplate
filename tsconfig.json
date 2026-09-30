@@ -3,11 +3,15 @@
   "compilerOptions": {
     "strict": true,
     "types": [
-      "jest"
+      "jest",
+      "node"
     ],
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@vendor/*": [
+        "./vendors/default/*"
       ]
     }
   }

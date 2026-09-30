@@ -1,22 +1,26 @@
 import { router } from "expo-router";
-import { FlatList, Pressable, StyleSheet, Text } from "react-native";
+import { useTranslation } from "react-i18next";
+import { FlatList, Pressable, Text } from "react-native";
 
+import { styles } from "./ItemsList.styles";
 import type { Item } from "@/entities/item";
-
-const ROW_BORDER_COLOR = "#ccc";
 
 type Props = {
   items: Item[];
 };
 
 export function ItemsList({ items }: Props) {
+  const { t } = useTranslation();
+
   return (
     <FlatList
       testID="items-main-list"
       data={items}
       keyExtractor={(item) => item.id}
       ListEmptyComponent={
-        <Text testID="items-empty-text">No items to show</Text>
+        <Text testID="items-empty-text" style={styles.empty}>
+          {t("items.empty")}
+        </Text>
       }
       renderItem={({ item }) => (
         <Pressable
@@ -32,14 +36,3 @@ export function ItemsList({ items }: Props) {
     />
   );
 }
-
-const styles = StyleSheet.create({
-  row: {
-    padding: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: ROW_BORDER_COLOR,
-  },
-  title: {
-    fontSize: 16,
-  },
-});

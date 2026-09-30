@@ -1,17 +1,24 @@
 {
   "name": "mobiweb-expo-boilerplate",
   "version": "0.1.0",
-  "main": "expo-router/entry",
+  "main": "index.ts",
   "dependencies": {
+    "babel-preset-expo": "~57.0.0",
     "expo": "~57.0.26",
     "expo-constants": "~57.0.20",
     "expo-linking": "~57.0.11",
+    "expo-localization": "~57.0.2",
     "expo-router": "~57.0.24",
+    "i18next": "^26.4.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-i18next": "^17.0.15",
     "react-native": "0.86.3",
+    "react-native-mmkv": "^4.3.2",
+    "react-native-nitro-modules": "^0.37.1",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-screens": "~4.26.0"
+    "react-native-screens": "~4.26.0",
+    "react-native-unistyles": "^3.3.0"
   },
   "devDependencies": {
     "@callstack/eslint-config": "^15.0.0",
@@ -20,6 +27,7 @@
     "@feature-sliced/steiger-plugin": "^0.8.0",
     "@testing-library/react-native": "^13.3.3",
     "@types/jest": "29.5.14",
+    "@types/node": "^22.20.4",
     "@types/react": "~19.2.2",
     "eslint": "^8.57.1",
     "eslint-import-resolver-typescript": "^4.4.5",
@@ -31,19 +39,14 @@
   },
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "dead-code": "knip",
-    "fsd": "steiger src"
+    "fsd": "steiger src",
+    "vendor-isolation": "node scripts/ci/vendor-isolation.mjs"
   },
-  "private": true,
-  "jest": {
-    "preset": "jest-expo",
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
-    }
-  }
+  "private": true
 }

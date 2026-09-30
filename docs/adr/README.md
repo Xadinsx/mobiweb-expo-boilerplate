@@ -15,3 +15,4 @@ How to add one:
 | [0003](0003-device-tests-on-github-actions.md) | Device tests on GitHub Actions, not EAS Workflows |
 | [0004](0004-qa-agent-claude-code.md) | The QA agent is Claude Code driving agent-device |
 | [0005](0005-npm-with-npm-10-lockfile.md) | npm as the package manager, lockfile written by npm 10 |
+| [0006](0006-theming-storage-and-translations.md) | Unistyles, MMKV and i18next for theming, storage and translations |
