@@ -19,7 +19,7 @@ jobs:
     outputs:
       app: ${{ steps.filter.outputs.app }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - id: filter
@@ -42,7 +42,7 @@ jobs:
       MAESTRO_VERSION: 2.10.0
       REFERENCE_VENDOR: ${{ vars.REFERENCE_VENDOR }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version: 22
