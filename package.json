@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "main": "index.ts",
   "dependencies": {
+    "@tanstack/react-query": "^5.104.0",
     "babel-preset-expo": "~57.0.0",
     "expo": "~57.0.26",
     "expo-constants": "~57.0.20",

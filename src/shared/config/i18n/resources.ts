@@ -7,6 +7,11 @@ export const en = {
   itemDetail: {
     title: "Item",
   },
+  request: {
+    error: "Something went wrong. Try again.",
+    loading: "Loading...",
+    retry: "Retry",
+  },
   settings: {
     language: "Language",
     nothingToChange: "Nothing to change.",
@@ -23,6 +28,11 @@ export const pt: typeof en = {
   },
   itemDetail: {
     title: "Item",
+  },
+  request: {
+    error: "Algo correu mal. Tente de novo.",
+    loading: "A carregar...",
+    retry: "Tentar de novo",
   },
   settings: {
     language: "Idioma",
