@@ -14,7 +14,7 @@ decision: ../adr/0006-theming-storage-and-translations.md
 
 ## Where the app depends on it
 
-- `react-native-mmkv` in `src/shared/lib/storage` and in tests that build an instance.
+- `react-native-mmkv` in `src/shared/lib/storage` and in tests that build an instance. Today those tests get the native binding stubbed by the Unistyles mock in `jest.setup.ts`, so removing styling needs an MMKV Jest mock (see the styling manifest).
 - `storage` imported from `@/shared/lib`, which today means: the theme (`src/shared/config/theme/theme.ts`), the language (`src/shared/config/i18n/i18n.ts`), and `src/shared/config/vendor-choices.test.ts`.
 - The named keys `theme` and `language`.
 

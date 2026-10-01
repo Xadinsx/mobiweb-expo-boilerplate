@@ -34,7 +34,7 @@ Replacing Unistyles with plain `StyleSheet` keeps the vendor palettes; only what
 1. Keep `createThemes`, but expose the current theme through a small React context instead of Unistyles.
 2. Rewrite each `*.styles.ts` to a plain `StyleSheet.create` that takes the theme from that context, or turn it into a hook returning styles.
 3. Rewrite `setTheme` and the settings theme switch to set the context, still storing the choice through the storage module.
-4. Remove the Babel plugin, the `jest.setup.ts` mock, the dependency and the `AppThemes` typing; add a test wrapper that provides the context.
+4. Remove the Babel plugin, the `jest.setup.ts` mock, the dependency and the `AppThemes` typing. The storage tests rely on the Unistyles mock to stub the native `NitroModules` binding that MMKV also uses, so add a Jest mock for `react-native-mmkv` (an in-memory one in `__mocks__/`) at the same time; add a test wrapper that provides the context.
 5. Dev builds are no longer needed for styling; keep them if another native module needs them.
 
 Removing styling entirely is not supported: the vendor's look would have nowhere to go.
@@ -54,6 +54,6 @@ Removing styling entirely is not supported: the vendor's look would have nowhere
 After a swap away from Unistyles, these must find nothing:
 
 - `grep -rn "react-native-unistyles" src app index.ts jest.setup.ts babel.config.js package.json`
-- `grep -rn "unistyles" docs/ai CLAUDE.md README.md` (mentions that are not in a deviation ADR)
+- `grep -rni "unistyles" docs/ai docs/features CLAUDE.md README.md` (case-insensitive; mentions that are not in a deviation ADR)
 
 After adding, these must exist: the Babel plugin entry, the mock import, and a `*.styles.ts` for each component that has styles.
