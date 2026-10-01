@@ -29,11 +29,11 @@ Fonts and splash screens are not supported yet; say so if asked.
 Before writing anything, refuse and say what to do instead when:
 
 - `vendors/<name>` already exists.
-- The name, URL scheme, bundle id, package or API URL equals or contains one of another vendor's values, or the reverse. (`pnpm vendor-isolation` enforces this; check the values yourself first.)
+- The name, URL scheme, bundle id, package or API URL equals or contains one of another vendor's values, or the reverse. (`vendor-isolation` enforces this; check the values yourself first.)
 - A language is not in the registry `src/shared/config/i18n/languages.ts`. Offer to add it (step 4) or to drop it.
 - A scheme's palette is missing, or a value is a secret.
 
-If `pnpm vendor-isolation` later flags a value of the new vendor that also appears in library text (a very short scheme, for example), choose a more distinctive value.
+If `vendor-isolation` later flags a value of the new vendor that also appears in library text (a very short scheme, for example), choose a more distinctive value.
 
 ## 3. Write the vendor
 
@@ -54,16 +54,18 @@ Only if the user asks for it: add the translations as a new object in `src/share
 
 Run, and fix what they report, until all pass:
 
-```bash
-pnpm exec eslint . --fix
-pnpm typecheck
-pnpm test
-pnpm fsd
-pnpm dead-code
-pnpm vendor-isolation
+Use the project's package manager (the Package manager module's manifest, `docs/modules/package-manager.md`, says which one and how to run a script or a local tool). Run these scripts, starting with `eslint . --fix`, in this order:
+
+```text
+eslint . --fix
+typecheck
+test
+fsd
+dead-code
+vendor-isolation
 ```
 
-`pnpm test` validates every vendor, and `pnpm vendor-isolation` exports every vendor's bundle. Also run `APP_VARIANT=<name> pnpm expo config --type public` and confirm the name and ids are the new vendor's. If you cannot get green, stop and list what is left; do not report success.
+`test` validates every vendor, and `vendor-isolation` exports every vendor's bundle. Also run ``expo config --type public` with `APP_VARIANT=<name>`` and confirm the name and ids are the new vendor's. If you cannot get green, stop and list what is left; do not report success.
 
 `package.json` may be rewritten by Expo tooling (the `android` and `ios` scripts must stay `expo run:android` and `expo run:ios`). Check `git diff package.json` is empty.
 

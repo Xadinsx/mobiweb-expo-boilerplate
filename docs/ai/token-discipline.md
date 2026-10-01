@@ -42,8 +42,12 @@ Measured on 2026-09-30 and 2026-10-01 by running each skill headless on a throwa
 | `/module`, remove the QA agent | 100 | $2.52 | not recorded |
 | `/module`, swap styling to plain `StyleSheet` | 116 | $3.46 | not recorded |
 | `/new-project`, swapping styling | 159 | $3.66 | not recorded |
+| `/new-project`, keeping every module (on pnpm) | 77 | $1.18 | 2.4 min |
+| `/module`, swap pnpm for npm | 127 | $3.97 | 9.6 min |
 
 The chained run (`/new-project` dropping the QA agent, then `/add-vendor`, then `/module` removing device checks) cost about $3.43 in total over 152 turns and 11 minutes of run time. Its first and last steps stopped to ask for permission to edit another skill, which led to the module-aware skills described below; the costs above are what those runs spent before stopping.
+
+The pnpm-to-npm swap first stopped at 107 turns and $2.77, because the project skills named pnpm commands and the module skill must not edit other skills. The skills now name no package-manager commands, and the swap finished on the second run. Both runs needed one edit under `.claude/` approved by hand (headless runs cannot), so the $3.97 run left the deny rule for the lockfile in `.claude/settings.json` to be changed by the person approving.
 
 Rules of thumb: adding a vendor costs under $1; dropping a module costs $1 to $3 depending on how many files it touches; a whole new project costs about $4. The single most expensive thing is swapping a library that many files import, because every file is rewritten.
 

@@ -16,8 +16,8 @@ decision: ../adr/0008-pnpm-and-deferred-tooling.md
 
 ## Where the app depends on it
 
-- `pnpm` in `.github/workflows`, `scripts/ci/vendor-isolation.mjs` (it starts `pnpm expo export`), `README.md`, `CLAUDE.md`, `docs/ai`, `docs/vendors.md`, `docs/modules` and `.claude/skills`.
-- `pnpm-lock.yaml` in `.claude/settings.json` (a read deny rule) and in the `changes` job filter of `maestro-android.yml` and `qa-agent.yml`.
+- `pnpm` in `.github/workflows`, `.github/actions`, `.githooks/pre-push`, `scripts/ci/vendor-isolation.mjs` (it starts `pnpm expo export`), `README.md`, `CLAUDE.md`, `docs/ai`, `docs/vendors.md`, `docs/features` and `docs/modules`. The project skills name no package-manager commands; they point here.
+- `pnpm-lock.yaml` in `.claude/settings.json` (a read deny rule), in the `changes` job filter of `maestro-android.yml` and `qa-agent.yml`, and in the diff exclusion that `qa-agent.yml` applies before it hands the diff to the agent.
 - `packageManager`, `engines` and `"pnpm"` in `package.json` and `eas.json`.
 - `pnpm add -g` in `qa-agent.yml`, which installs the QA tools.
 
@@ -26,10 +26,10 @@ decision: ../adr/0008-pnpm-and-deferred-tooling.md
 To move to npm or yarn:
 
 1. Pin the new manager in `packageManager` (npm has no Corepack pin; then keep the version in `engines` and `eas.json`) and update `test/tooling/versions.test.ts` to match.
-2. Generate the new lockfile from the current one, then delete `pnpm-lock.yaml` and `pnpm-workspace.yaml`. Move the install-script allow-list to the new manager's equivalent, or accept its default.
+2. Delete `node_modules` first: the pnpm layout is symlinks into a store, and another manager's installer fails on it. Then generate the new lockfile, and delete `pnpm-lock.yaml` and `pnpm-workspace.yaml`. Move the install-script allow-list to the new manager's equivalent, or accept its default.
 3. In each workflow replace `pnpm/action-setup`, `cache: pnpm` and the install step. Replace `pnpm exec` and `pnpm expo` with the new manager's runner everywhere, including `scripts/ci/vendor-isolation.mjs`.
-4. Update the `changes` job filters and the `.claude/settings.json` deny rule to the new lockfile name.
-5. Rewrite the commands in `README.md`, `CLAUDE.md`, `docs/ai`, `docs/vendors.md`, the other manifests and the three project skills.
+4. Update the `changes` job filters, the diff exclusion in `qa-agent.yml` and the `.claude/settings.json` deny rule to the new lockfile name.
+5. Rewrite the commands in `.githooks/pre-push`, the composite action, `README.md`, `CLAUDE.md`, `docs/ai`, `docs/vendors.md`, `docs/features` and the other manifests. The project skills need no change.
 
 If the new manager does not use isolated installs, check that `pnpm`-style missing-declaration errors are not hiding in the code: run the typecheck and a bundle export before committing.
 
