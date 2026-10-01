@@ -53,10 +53,11 @@ describe("ItemsPage", () => {
     expect(await screen.findByTestId("items-empty-text")).toBeTruthy();
   });
 
-  it("shows the loading text in Portuguese", () => {
+  it("shows the loading text in Portuguese", async () => {
     setLanguage("pt");
     renderPage();
 
     expect(screen.getByText("A carregar...")).toBeTruthy();
+    await screen.findByTestId("items-main-list");
   });
 });

@@ -33,8 +33,9 @@ describe("items flow", () => {
     expect(getPathname()).toBe("/");
   });
 
-  it("opens the settings page from the items header", () => {
+  it("opens the settings page from the items header", async () => {
     const { getPathname } = renderRouter("app");
+    await screen.findByTestId("items-main-list");
 
     fireEvent.press(screen.getByTestId("items-settings-link"));
 
