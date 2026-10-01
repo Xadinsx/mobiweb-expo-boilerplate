@@ -21,8 +21,9 @@ Typecheck, lint, tests, dead-code detection (`knip`), the CI workflow, the secre
 | [Device checks](device-checks.md) | Maestro on GitHub Actions | in use |
 | [QA agent](qa-agent.md) | Claude Code driving agent-device | in use |
 | [Package manager](package-manager.md) | pnpm (isolated installs) | in use |
+| [Server state](server-state.md) | TanStack Query with a typed API layer | in use |
 
-Server state, crash reporting and release automation get their manifests when those modules are built.
+Crash reporting and release automation get their manifests when those modules are built.
 
 ## Status values
 

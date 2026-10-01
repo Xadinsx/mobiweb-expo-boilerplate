@@ -20,3 +20,4 @@ How to add one:
 | [0006](0006-theming-storage-and-translations.md) | Unistyles, MMKV and i18next for theming, storage and translations |
 | [0007](0007-vendor-config-and-recommended-defaults.md) | Vendor config, and recommended defaults a client may decline |
 | [0008](0008-pnpm-and-deferred-tooling.md) | pnpm as the recommended package manager; TypeScript 7 and oxlint deferred |
+| [0009](0009-server-state-with-tanstack-query.md) | Server state with TanStack Query and a typed API layer |
