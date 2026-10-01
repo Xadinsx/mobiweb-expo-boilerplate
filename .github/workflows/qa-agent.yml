@@ -59,7 +59,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v6
       - run: npm ci
       - name: Choose the reference vendor
         # Every vendor builds through the same code; CI builds one of them (repository variable REFERENCE_VENDOR).
