@@ -47,3 +47,7 @@ flowchart TB
 - Not enforced yet: `maestro-android` and `qa-agent` are advisory until they have proven stable and are added to the required checks, so a red device check does not block a merge by itself and reviewers must look at it. See `docs/ai/qa-agent.md` for how the QA agent works and how to acknowledge an inconclusive run.
 - Before turning on "Require review from Code Owners", replace the `@your-org/your-team` placeholder in `.github/CODEOWNERS` with the real team. Until then, code owner review is not enforced.
 - The reviewer reads the diff and the "Decisions weighed" section, not only the green checks. A passing QA agent report is evidence, not approval.
+
+## Local gate
+
+The pre-push hook in `.githooks/pre-push` runs `pnpm typecheck`, `lint`, `test`, `fsd` and `dead-code` before every push, so a failure shows up locally and not after the CI round trip. It is a convenience: CI runs the same checks and is the gate, and nobody should bypass the hook with `--no-verify`.
