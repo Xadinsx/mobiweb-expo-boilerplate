@@ -18,6 +18,7 @@ Refuse and say why if `vendors/sample-single` does not exist (the project was al
 4. **Look, schemes, languages, features, backend, services:** the same questions as `/add-vendor` (see `.claude/skills/add-vendor/SKILL.md`, section "Ask"), including that service ids must be public. A language that is not in the registry follows `/add-vendor`, section 4.
 5. **Code owners:** the real GitHub team or users for `.github/CODEOWNERS`.
 6. **Modules:** show the index in `docs/modules/README.md`. For each module ask: keep the recommended default, swap, or drop. Say the recommendation and its reason (from the manifest) before asking, and ask the reason for any swap or drop, because it is recorded as a deviation.
+7. **Confirm the deletions** before starting: the sample vendor `vendors/sample-single`, the boilerplate's files in `docs/plans/`, and this skill. They stay in git history, but ask once and wait for a yes.
 
 ## 2. Make the first vendor
 
