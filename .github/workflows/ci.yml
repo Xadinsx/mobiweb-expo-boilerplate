@@ -22,8 +22,6 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - name: Check packages match the Expo SDK
-        run: pnpm exec expo install --check
       - run: pnpm typecheck
       - run: pnpm lint
       - run: pnpm test

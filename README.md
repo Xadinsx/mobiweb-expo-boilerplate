@@ -25,7 +25,6 @@ The app uses native modules (Unistyles, MMKV), so Expo Go does not work. `expo r
 | `pnpm test` | Jest and React Native Testing Library |
 | `pnpm fsd` | Steiger: Feature-Sliced Design import rules |
 | `pnpm dead-code` | knip: unused files, exports and dependencies |
-| `pnpm expo install --check` | Packages match what the installed Expo SDK expects (CI runs it) |
 
 Run all five before opening a PR. CI runs them too.
 

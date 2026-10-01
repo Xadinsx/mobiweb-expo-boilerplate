@@ -45,7 +45,6 @@ If the new manager does not use isolated installs, check that `pnpm`-style missi
 
 - `pnpm install --frozen-lockfile` in every workflow.
 - `test/tooling/versions.test.ts`, in `pnpm test`.
-- `pnpm expo install --check`, in the `checks` job.
 
 ## Leftover checks
 
