@@ -86,7 +86,8 @@ jobs:
           mkdir -p "$PNPM_HOME/bin"
           export PATH="$PNPM_HOME/bin:$PATH"
           echo "$PNPM_HOME/bin" >> "$GITHUB_PATH"
-          pnpm add -g agent-device@0.21.16 @anthropic-ai/claude-code@2.1.285
+          # pnpm blocks install scripts by default; both tools need theirs to fetch a native binary.
+          pnpm add -g --allow-build=agent-device --allow-build=@anthropic-ai/claude-code agent-device@0.21.16 @anthropic-ai/claude-code@2.1.285
       - name: Prepare the agent input
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
