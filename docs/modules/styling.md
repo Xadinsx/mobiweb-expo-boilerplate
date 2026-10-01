@@ -47,7 +47,7 @@ Removing styling entirely is not supported: the vendor's look would have nowhere
 ## Checks
 
 - Jest runs with the Unistyles mock in `jest.setup.ts`.
-- `npm run typecheck` checks the theme typing.
+- `pnpm typecheck` checks the theme typing.
 
 ## Leftover checks
 

@@ -10,7 +10,9 @@
       },
       "env": {
         "APP_VARIANT": "default"
-      }
+      },
+      "node": "22.12.0",
+      "pnpm": "11.25.0"
     }
   }
 }

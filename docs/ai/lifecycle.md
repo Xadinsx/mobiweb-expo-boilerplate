@@ -21,7 +21,7 @@ flowchart TB
 |---|---|---|---|---|---|
 | Ticket | Developer | Jira ticket | Understood scope | Ticket key known | none |
 | Brainstorm and plan | Developer with agent | Ticket, or its text read via the optional Jira MCP | For anything beyond a small fix, a plan in `docs/plans/` | Developer agrees with the plan | `/compound-engineering:ce-brainstorm`, `/compound-engineering:ce-plan` |
-| Implement | Agent, developer steers | Plan or ticket | Conventional commits on a branch (named `<TICKET-KEY>-short-name` once Jira is in use), the feature doc updated, an ADR if a decision was weighed | `npm run typecheck`, `lint`, `test`, `fsd`, `dead-code` pass | `/compound-engineering:ce-work` |
+| Implement | Agent, developer steers | Plan or ticket | Conventional commits on a branch (named `<TICKET-KEY>-short-name` once Jira is in use), the feature doc updated, an ADR if a decision was weighed | `pnpm typecheck`, `lint`, `test`, `fsd`, `dead-code` pass | `/compound-engineering:ce-work` |
 | Simplify and self-review | Agent | The diff | Diff with duplication and needless abstraction removed | Reviewer-ready diff; "Decisions weighed" written | `/compound-engineering:ce-simplify-code`, `/compound-engineering:ce-code-review` |
 | Open PR | Developer | Branch | PR titled `<TICKET-KEY> short summary`, template filled | PR template complete | `/compound-engineering:ce-commit-push-pr` |
 | CI gates | CI | PR | Typecheck, lint, tests, FSD rules, dead code, commit format, docs check, secret scan, ticket-key check results | All required checks green | none |

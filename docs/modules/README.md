@@ -8,7 +8,7 @@ Read this index first, then only the manifests you need. People work from the ma
 
 ## Core, never optional
 
-Typecheck, lint, tests, dead-code detection (`knip`), the CI workflow, the secret scan, the commit-message check, the docs system, the vendor model (`vendors/`, its tests and `npm run vendor-isolation`), and the Claude workflow docs. Core libraries are Expo, Expo Router and what they need (`expo-constants`, `expo-linking`, `react-native-safe-area-context`, `react-native-screens`). These are not modules.
+Typecheck, lint, tests, dead-code detection (`knip`), the CI workflow, the secret scan, the commit-message check, the docs system, the vendor model (`vendors/`, its tests and `pnpm vendor-isolation`), and the Claude workflow docs. Core libraries are Expo, Expo Router and what they need (`expo-constants`, `expo-linking`, `react-native-safe-area-context`, `react-native-screens`). These are not modules.
 
 ## Modules
 
@@ -20,6 +20,7 @@ Typecheck, lint, tests, dead-code detection (`knip`), the CI workflow, the secre
 | [Architecture check](architecture.md) | Feature-Sliced Design checked by Steiger | in use |
 | [Device checks](device-checks.md) | Maestro on GitHub Actions | in use |
 | [QA agent](qa-agent.md) | Claude Code driving agent-device | in use |
+| [Package manager](package-manager.md) | pnpm (isolated installs) | in use |
 
 Server state, crash reporting and release automation get their manifests when those modules are built.
 

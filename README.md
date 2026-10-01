@@ -6,24 +6,25 @@ The app itself is a small sample: an items list that opens a detail screen.
 
 ## Quick start
 
-You need Node 22.12 or newer.
+You need Node 22 (see `.nvmrc`) and pnpm, which Corepack provides at the version in `package.json`.
 
 ```bash
-npm ci
-npx expo run:android   # or: npx expo run:ios
+corepack enable
+pnpm install
+pnpm expo run:android   # or: pnpm expo run:ios
 ```
 
-The app uses native modules (Unistyles, MMKV), so Expo Go does not work. `expo run:android` builds a development app and starts it; after that, `npx expo start` reopens the dev server.
+The app uses native modules (Unistyles, MMKV), so Expo Go does not work. `expo run:android` builds a development app and starts it; after that, `pnpm expo start` reopens the dev server.
 
 ## Commands
 
 | Command | What it does |
 |---|---|
-| `npm run typecheck` | TypeScript, strict |
-| `npm run lint` | ESLint with the Callstack config and Prettier |
-| `npm test` | Jest and React Native Testing Library |
-| `npm run fsd` | Steiger: Feature-Sliced Design import rules |
-| `npm run dead-code` | knip: unused files, exports and dependencies |
+| `pnpm typecheck` | TypeScript, strict |
+| `pnpm lint` | ESLint with the Callstack config and Prettier |
+| `pnpm test` | Jest and React Native Testing Library |
+| `pnpm fsd` | Steiger: Feature-Sliced Design import rules |
+| `pnpm dead-code` | knip: unused files, exports and dependencies |
 
 Run all five before opening a PR. CI runs them too.
 

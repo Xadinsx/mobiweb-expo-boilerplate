@@ -1,0 +1,4 @@
+# pnpm blocks dependency install scripts unless listed. unrs-resolver (used by the ESLint import
+# resolver) only has an optional native fallback, and its prebuilt binary is installed without it.
+allowBuilds:
+  unrs-resolver: false

@@ -1,6 +1,6 @@
 # 0005. npm as the package manager, lockfile written by npm 10
 
-- Status: accepted
+- Status: superseded by 0008
 - Date: 2026-09-29
 
 ## Context
