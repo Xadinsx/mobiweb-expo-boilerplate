@@ -24,7 +24,6 @@ The app uses native modules (Unistyles, MMKV), so Expo Go does not work. `expo r
 | `npm test` | Jest and React Native Testing Library |
 | `npm run fsd` | Steiger: Feature-Sliced Design import rules |
 | `npm run dead-code` | knip: unused files, exports and dependencies |
-| `npx expo install --check` | Packages match what the installed Expo SDK expects (CI runs it) |
 
 Run all five before opening a PR. CI runs them too.
 
