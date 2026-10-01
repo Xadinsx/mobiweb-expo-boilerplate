@@ -2,6 +2,8 @@
 
 An ADR records one decision that was weighed: what we chose, what we rejected, and why. Write one when a choice would be expensive to reverse or when a new developer would ask "why is it done this way?". Small choices belong in the PR description.
 
+A client may decline a recommended default (a module in `docs/modules/`). Record that as a deviation ADR named `NNNN-deviation-<capability>.md`, using the deviation section of the template.
+
 How to add one:
 
 1. Copy `template.md` to `NNNN-short-title.md`, using the next number.
@@ -16,3 +18,4 @@ How to add one:
 | [0004](0004-qa-agent-claude-code.md) | The QA agent is Claude Code driving agent-device |
 | [0005](0005-npm-with-npm-10-lockfile.md) | npm as the package manager, lockfile written by npm 10 |
 | [0006](0006-theming-storage-and-translations.md) | Unistyles, MMKV and i18next for theming, storage and translations |
+| [0007](0007-vendor-config-and-recommended-defaults.md) | Vendor config, and recommended defaults a client may decline |

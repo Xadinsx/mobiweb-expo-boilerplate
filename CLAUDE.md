@@ -11,7 +11,7 @@ Expo app (Expo Router, strict TypeScript, Jest with React Native Testing Library
 
 ## Layout
 
-Feature-Sliced Design, checked by `npm run fsd`. Details in `docs/ai/house-style.md`.
+Feature-Sliced Design, checked by `npm run fsd`. The layout rules are in `docs/modules/architecture.md`.
 
 - `app/` (repo root): Expo Router routes. One-line re-exports of a page, no logic.
 - `src/app`, `src/pages`, `src/entities`, `src/shared`, ...: FSD layers. Import only from lower layers, and only through a slice's `index.ts`. Add a layer or slice only when a real second use appears.
@@ -30,6 +30,7 @@ Feature-Sliced Design, checked by `npm run fsd`. Details in `docs/ai/house-style
 ## Docs
 
 - `docs/ai/house-style.md`: code style, when to abstract, `testID` convention.
+- `docs/modules/README.md`: the capabilities (styling, storage, translations, architecture check, device checks, QA agent), their recommended defaults, and their rules. Read the manifest before changing what it covers. A client can decline a default through a deviation ADR.
 - `docs/ai/token-discipline.md`: how to keep token use low.
 - `docs/ai/docs-workflow.md`: commits, feature docs, ADRs, and the docs check.
 - `docs/features/`: what each feature does today.

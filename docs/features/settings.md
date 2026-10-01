@@ -47,4 +47,4 @@ The page opens from the "Settings" link in the header of the items list.
 
 ## Limits
 
-There is no "follow the system theme" option, and only English and Portuguese are shipped. Adding a language is a translation file plus a line in the language registry.
+There is no "follow the system theme" option, and only English and Portuguese are shipped. Adding a language is a translation object in `resources.ts` plus a line in the language registry.

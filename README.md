@@ -33,6 +33,7 @@ Start with [`docs/ai/onboarding.md`](docs/ai/onboarding.md). The rest of [`docs/
 
 - [`lifecycle.md`](docs/ai/lifecycle.md): the path from ticket to release, and which checks gate a merge.
 - [`house-style.md`](docs/ai/house-style.md): how to keep the code simple, when to abstract, and the test id convention.
+- [`modules/`](docs/modules/README.md): each capability the boilerplate ships (styling, storage, translations, architecture check, device checks, QA agent), its recommended default, and what changes if a client declines it.
 - [`token-discipline.md`](docs/ai/token-discipline.md): keeping token use low.
 - [`../adr/`](docs/adr/): why the important decisions were made (architecture decision records).
 - [`docs-workflow.md`](docs/ai/docs-workflow.md): commit format, feature docs, ADRs and the docs check.
