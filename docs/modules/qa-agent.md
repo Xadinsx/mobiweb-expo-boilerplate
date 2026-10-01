@@ -19,7 +19,7 @@ decision: ../adr/0004-qa-agent-claude-code.md
 
 - `agent-device` and `claude` in `.github/workflows` and `scripts/agent-qa`.
 - `qa-notes.md` in `vendors/`, `scripts/agent-qa/run-agent.sh` and `docs/vendors.md`.
-- `qa-agent` in `README.md`, `docs/ai/lifecycle.md` and the branch protection's required checks.
+- `qa-agent` in `README.md`, `CLAUDE.md`, `docs/ai/lifecycle.md`, `docs/ai/house-style.md`, `docs/features/items.md`, `.github/pull_request_template.md` (the QA evidence section), `.github/CODEOWNERS` (the `scripts/agent-qa/` entry) and the branch protection's required checks.
 - The repository secret and environment of the same name.
 
 ## On swap or removal
@@ -38,4 +38,4 @@ decision: ../adr/0004-qa-agent-claude-code.md
 
 ## Leftover checks
 
-After removal, `grep -rni "qa-agent\|agent-device\|qa-notes" . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=plans --exclude-dir=adr` must find nothing except a deviation record.
+After removal, `grep -rniI "qa-agent\|qa-notes\|agent-qa" . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=plans --exclude-dir=adr` must find nothing except this manifest, the module index and the deviation record. The name `agent-device` is not searched: an unrelated Callstack skill of that name is also used for local emulator work (`docs/ai/onboarding.md`).

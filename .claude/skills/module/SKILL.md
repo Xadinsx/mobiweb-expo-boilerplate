@@ -16,7 +16,7 @@ A module is a capability with a manifest in `docs/modules/`. You change it by fo
 
 ## 2. Check the manifest against the repo
 
-Run each search in "Where the app depends on it" and compare. If the repo has uses the manifest does not mention, or the manifest names things that no longer exist, correct the manifest in this change and say what you corrected. Do not trust the manifest over the code.
+Run each search in "Where the app depends on it" and compare. Also search the docs, `CLAUDE.md`, the README and `.github/` for the module's name; prose that explains a removed module goes stale. If the repo has uses the manifest does not mention, or the manifest names things that no longer exist, correct the manifest in this change and say what you corrected. Do not trust the manifest over the code.
 
 ## 3. Apply the steps
 
@@ -24,6 +24,7 @@ Follow "On swap or removal" (or "Adds" for an add) in order. For a removal or sw
 
 - Remove the module's dependencies, native plugin and config entries, scripts, CI steps (and required checks, which the user must change in GitHub; tell them), docs, and tests that only exist for it.
 - Remove the module's rules from its manifest if it is removed. For a swap, rewrite them to match what is now installed. Rules live in the manifest, not in `docs/ai/house-style.md`.
+- After changing dependencies, regenerate the lockfile with `npx -y npm@10 install` (`docs/adr/0005-npm-with-npm-10-lockfile.md`).
 - Keep the vendor files working: `vendors/*/vendor.json` stays valid, and every vendor still builds.
 - Change the minimum: do not touch code the manifest does not cover.
 
