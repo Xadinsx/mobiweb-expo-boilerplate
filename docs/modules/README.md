@@ -20,6 +20,7 @@ Typecheck, lint, tests, dead-code detection (`knip`), the CI workflow, the secre
 | [Architecture check](architecture.md) | Feature-Sliced Design checked by Steiger | in use |
 | [Device checks](device-checks.md) | Maestro on GitHub Actions | in use |
 | [QA agent](qa-agent.md) | Claude Code driving agent-device | in use |
+| [Package manager](package-manager.md) | pnpm (isolated installs) | in use |
 
 Server state, crash reporting and release automation get their manifests when those modules are built.
 
