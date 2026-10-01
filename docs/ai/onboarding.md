@@ -5,7 +5,7 @@ Goal: ship a small first PR with Claude Code by the end of the day. Read `docs/a
 ## Set up
 
 1. Install Node 22 (the version in `.nvmrc`), run `corepack enable` so pnpm matches `package.json`, and install Claude Code.
-2. Clone the repo and run `pnpm install`.
+2. Clone the repo and run `pnpm install`. This also installs the pre-push hook, which runs typecheck, lint, tests, Steiger and `knip` before each push (about 15 s).
 3. Open the repo in Claude Code. It offers the Compound Engineering plugin from `.claude/settings.json`; accept it. The plugin is third-party code that runs with your permissions, so read what it adds before relying on it.
 4. Install the three Callstack skills this project uses, and no others, since every installed skill adds to context:
 

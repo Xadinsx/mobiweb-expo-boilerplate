@@ -7,6 +7,7 @@ Expo app (Expo Router, strict TypeScript, Jest with React Native Testing Library
 - `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm fsd`, `pnpm dead-code`: run all five before saying a task is done.
 - `pnpm expo run:android` or `pnpm expo run:ios`: build and start a development app. Expo Go does not work, because the app has native modules; afterwards `pnpm expo start` opens the dev server.
 - `pnpm expo install <package>`: always use this to add dependencies, so versions match the Expo SDK.
+- A pre-push hook (`.githooks/pre-push`, installed by `pnpm install`) runs the five checks before every push. Never skip it with `--no-verify`; fix the failure instead.
 - Node comes from `.nvmrc` and pnpm from the `packageManager` field in `package.json` (run `corepack enable` once). Commit `pnpm-lock.yaml` with any dependency change; CI installs with a frozen lockfile and fails when it is out of date.
 
 ## Layout
