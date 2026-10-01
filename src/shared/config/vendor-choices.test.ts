@@ -1,6 +1,6 @@
 // setTheme and setLanguage are bound to the vendor this build is for, so these tests load
 // them, and the storage they write to, together with a different vendor.
-const base = require("../../../vendors/default/vendor.json");
+const base = require("../../../test/vendor/vendor.json");
 
 function loadWithVendor(overrides: object) {
   jest.resetModules();

@@ -32,7 +32,7 @@ Unknown names fail with a list of the vendors that exist. Local runs, CI and EAS
 ## How only one vendor ships
 
 - `app.config.ts` reads the chosen vendor for the app name, ids, icons and scheme.
-- In the app, `@vendor/...` imports resolve to `vendors/<APP_VARIANT>/...` (a rule in `metro.config.js`, mirrored in `jest.config.js`), so Metro bundles only that folder. `tsconfig.json` points `@vendor` at the `default` vendor for types.
+- In the app, `@vendor/...` imports resolve to `vendors/<APP_VARIANT>/...` (a rule in `metro.config.js`), so Metro bundles only that folder. `tsconfig.json` points `@vendor` at the `default` vendor for types. Unit tests resolve `@vendor` to the fixed fixture in `test/vendor`, so they never depend on a real vendor's values; `vendors/vendors.test.ts` checks every real vendor.
 - Restart the dev server after changing `APP_VARIANT`, because Metro does not re-read the environment.
 
 ## What goes in a vendor

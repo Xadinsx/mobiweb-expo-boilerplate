@@ -26,7 +26,7 @@ Follow "On swap or removal" (or "Adds" for an add) in order. For a removal or sw
 - Remove the module's rules from its manifest if it is removed. For a swap, rewrite them to match what is now installed. Rules live in the manifest, not in `docs/ai/house-style.md`.
 - After changing dependencies, regenerate the lockfile with `npx -y npm@10 install` (`docs/adr/0005-npm-with-npm-10-lockfile.md`).
 - Keep the vendor files working: `vendors/*/vendor.json` stays valid, and every vendor still builds.
-- Change the minimum: do not touch code the manifest does not cover.
+- Change the minimum: do not touch code the manifest does not cover. Do not edit the other skills in `.claude/skills`: they read the module index and skip what a removed module owned.
 
 ## 4. Record it
 
