@@ -77,7 +77,7 @@ jobs:
             echo "$PR_TITLE"
             echo "</pull-request-title>"
             echo "<diff>"
-            git diff "origin/$BASE_REF" HEAD -- . ':(exclude)package-lock.json' | head -c 60000
+            git diff "origin/$BASE_REF" HEAD -- . ':(exclude)pnpm-lock.yaml' | head -c 60000
             echo "</diff>"
           } > qa-input.txt
       - name: Run the QA agent on an emulator
