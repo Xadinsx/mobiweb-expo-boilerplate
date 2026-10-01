@@ -8,6 +8,8 @@ disable-model-invocation: true
 
 Adds `vendors/<name>/` with its config, assets and QA notes, plus an `eas.json` profile, and stops only when the checks pass. Read `docs/vendors.md` first: it says what a vendor is. Do not edit any other vendor.
 
+Read the status column of `docs/modules/README.md` too. A step that belongs to a module this project has removed is skipped: no `qa-notes.md` when the QA agent is removed, no vendor Maestro flow when device checks are removed, and leave out the device-check sentence in the report.
+
 ## 1. Ask
 
 Ask these, one group at a time, and suggest a default where you can:
