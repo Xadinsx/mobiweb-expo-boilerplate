@@ -38,7 +38,8 @@ If the new manager does not use isolated installs, check that `pnpm`-style missi
 - Commit `pnpm-lock.yaml` with every dependency change. CI installs with a frozen lockfile and fails when it is stale.
 - Add dependencies with `pnpm expo install <package>` so versions match the Expo SDK.
 - Do not put a registry or credentials in a committed `.npmrc`. The lockfile has no registry URLs for registry packages.
-- A dependency whose install script is needed goes in `allowBuilds` in `pnpm-workspace.yaml` with a one-line reason; otherwise it is set to `false`.
+- A dependency whose install script is needed goes in `allowBuilds` in `pnpm-workspace.yaml` with a one-line reason; otherwise it is set to `false`. A tool installed globally in CI gets `--allow-build=<name>` on the `pnpm add -g` line instead (the QA agent job does this for the Claude CLI and `agent-device`).
+- Global binaries live in `$PNPM_HOME/bin` in pnpm 11, so a workflow that installs a tool globally puts that directory on the path first.
 - Change the Node major or the pnpm version in `.nvmrc`, `package.json` and `eas.json` together.
 
 ## Checks

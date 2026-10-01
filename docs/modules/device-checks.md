@@ -10,6 +10,7 @@ decision: ../adr/0003-device-tests-on-github-actions.md
 ## Adds
 
 - `.github/workflows/maestro-android.yml` with its `changes` job, and `scripts/ci/run-maestro.sh`.
+- `.github/actions/build-android-apk` (the APK build with ccache), shared with the QA agent, and `.github/workflows/native-cache.yml`, which seeds the caches from `main`.
 - Shared flows in `.maestro/flows`, and per-vendor flows in `vendors/<name>/maestro/`.
 - The repository variable `REFERENCE_VENDOR` (optional) that chooses the vendor CI builds.
 
@@ -23,7 +24,7 @@ decision: ../adr/0003-device-tests-on-github-actions.md
 ## On swap or removal
 
 1. Another tool: rewrite the flows and `run-maestro.sh`, keep the `changes` job and the vendor-aware build (`APP_VARIANT`, `APP_ID`).
-2. Removal: delete the workflow, `run-maestro.sh`, `.maestro/` and every `vendors/*/maestro/`; remove `maestro-android` from the required checks; update `docs/ai/lifecycle.md` and the README.
+2. Removal: delete the workflow, `run-maestro.sh`, `.maestro/` and every `vendors/*/maestro/`; remove `maestro-android` from the required checks; update `docs/ai/lifecycle.md` and the README. Keep `.github/actions/build-android-apk` and `native-cache.yml` while the QA agent stays; delete both when it goes too.
 
 ## Rules
 

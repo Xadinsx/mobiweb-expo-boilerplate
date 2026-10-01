@@ -46,7 +46,8 @@
     "lint": "eslint .",
     "dead-code": "knip",
     "fsd": "steiger src",
-    "vendor-isolation": "node scripts/ci/vendor-isolation.mjs"
+    "vendor-isolation": "node scripts/ci/vendor-isolation.mjs",
+    "prepare": "git rev-parse --git-dir >/dev/null 2>&1 && git config core.hooksPath .githooks || true"
   },
   "private": true,
   "packageManager": "pnpm@11.25.0",

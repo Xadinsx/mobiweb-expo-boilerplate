@@ -1,0 +1,12 @@
+#!/bin/sh
+# Runs the quick checks before a push, so a mistake shows up here and not after the CI round trip.
+# CI runs the same checks and stays the gate. Do not skip this hook with --no-verify.
+set -e
+
+for check in typecheck lint test fsd dead-code; do
+  echo "pre-push: pnpm $check"
+  pnpm "$check" || {
+    echo "pre-push: 'pnpm $check' failed. Fix it, or run it again to see the details."
+    exit 1
+  }
+done

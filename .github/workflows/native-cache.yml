@@ -1,0 +1,40 @@
+name: native-cache
+
+# Builds the release APK on main and throws it away, to leave the ccache and Gradle caches that
+# pull requests can restore. GitHub lets a pull request read only caches written by its base branch
+# or by itself, so without this job the first run of every pull request would build from scratch.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "app/**"
+      - "vendors/**"
+      - "app.config.ts"
+      - "metro.config.js"
+      - "babel.config.js"
+      - "index.ts"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".nvmrc"
+      - ".github/actions/build-android-apk/**"
+      - ".github/workflows/native-cache.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: native-cache
+  cancel-in-progress: true
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/build-android-apk
+        with:
+          reference-vendor: ${{ vars.REFERENCE_VENDOR }}
