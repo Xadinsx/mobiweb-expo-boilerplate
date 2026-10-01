@@ -15,7 +15,7 @@ jobs:
     if: ${{ vars.RELEASE_PLEASE_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: googleapis/release-please-action@v4
+      - uses: googleapis/release-please-action@v5
         with:
           # A token from a personal access token lets the release PR trigger the required checks.
           token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
