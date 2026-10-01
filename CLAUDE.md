@@ -4,14 +4,14 @@ Expo app (Expo Router, strict TypeScript, Jest with React Native Testing Library
 
 ## Commands
 
-- `npm run typecheck`, `npm run lint`, `npm test`, `npm run fsd`, `npm run dead-code`: run all five before saying a task is done.
-- `npx expo run:android` or `npx expo run:ios`: build and start a development app. Expo Go does not work, because the app has native modules; afterwards `npx expo start` opens the dev server.
-- `npx expo install <package>`: always use this to add dependencies, so versions match the Expo SDK.
-- Node 22 ships npm 10, which is what CI uses. If your npm is newer, regenerate the lockfile with `npx npm@10 install` before committing dependency changes, or `npm ci` can fail in CI with a lockfile mismatch.
+- `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm fsd`, `pnpm dead-code`: run all five before saying a task is done.
+- `pnpm expo run:android` or `pnpm expo run:ios`: build and start a development app. Expo Go does not work, because the app has native modules; afterwards `pnpm expo start` opens the dev server.
+- `pnpm expo install <package>`: always use this to add dependencies, so versions match the Expo SDK.
+- Node comes from `.nvmrc` and pnpm from the `packageManager` field in `package.json` (run `corepack enable` once). Commit `pnpm-lock.yaml` with any dependency change; CI installs with a frozen lockfile and fails when it is out of date.
 
 ## Layout
 
-Feature-Sliced Design, checked by `npm run fsd`. The layout rules are in `docs/modules/architecture.md`.
+Feature-Sliced Design, checked by `pnpm fsd`. The layout rules are in `docs/modules/architecture.md`.
 
 - `app/` (repo root): Expo Router routes. One-line re-exports of a page, no logic.
 - `src/app`, `src/pages`, `src/entities`, `src/shared`, ...: FSD layers. Import only from lower layers, and only through a slice's `index.ts`. Add a layer or slice only when a real second use appears.

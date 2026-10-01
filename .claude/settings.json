@@ -15,7 +15,7 @@
       "Read(./node_modules/**)",
       "Read(./.expo/**)",
       "Read(./dist/**)",
-      "Read(./package-lock.json)",
+      "Read(./pnpm-lock.yaml)",
       "Read(./.env)",
       "Read(./.env.*)",
       "Bash(cat .env*)",

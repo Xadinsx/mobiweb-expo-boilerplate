@@ -9,7 +9,7 @@ decision: ../adr/0001-feature-sliced-design.md
 
 ## Adds
 
-- Dev dependencies `steiger` and `@feature-sliced/steiger-plugin`, `steiger.config.mjs`, the script `npm run fsd`, and the `npm run fsd` step in the `checks` job.
+- Dev dependencies `steiger` and `@feature-sliced/steiger-plugin`, `steiger.config.mjs`, the script `pnpm fsd`, and the `pnpm fsd` step in the `checks` job.
 - The layout: `src/{app,pages,entities,shared}` (more layers on demand) and thin routes in the root `app/` folder.
 - The path alias `@/*` in `tsconfig.json`, `jest.config.js` and the ESLint import resolver.
 
@@ -44,7 +44,7 @@ decision: ../adr/0001-feature-sliced-design.md
 
 ## Checks
 
-- `npm run fsd` (Steiger), run in CI.
+- `pnpm fsd` (Steiger), run in CI.
 
 ## Leftover checks
 

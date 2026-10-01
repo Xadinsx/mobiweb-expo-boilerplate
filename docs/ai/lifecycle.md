@@ -21,7 +21,7 @@ flowchart TB
 |---|---|---|---|---|---|
 | Ticket | Developer | Jira ticket | Understood scope | Ticket key known | none |
 | Brainstorm and plan | Developer with agent | Ticket, or its text read via the optional Jira MCP | For anything beyond a small fix, a plan in `docs/plans/` | Developer agrees with the plan | `/compound-engineering:ce-brainstorm`, `/compound-engineering:ce-plan` |
-| Implement | Agent, developer steers | Plan or ticket | Conventional commits on a branch (named `<TICKET-KEY>-short-name` once Jira is in use), the feature doc updated, an ADR if a decision was weighed | `npm run typecheck`, `lint`, `test`, `fsd`, `dead-code` pass | `/compound-engineering:ce-work` |
+| Implement | Agent, developer steers | Plan or ticket | Conventional commits on a branch (named `<TICKET-KEY>-short-name` once Jira is in use), the feature doc updated, an ADR if a decision was weighed | `pnpm typecheck`, `lint`, `test`, `fsd`, `dead-code` pass | `/compound-engineering:ce-work` |
 | Simplify and self-review | Agent | The diff | Diff with duplication and needless abstraction removed | Reviewer-ready diff; "Decisions weighed" written | `/compound-engineering:ce-simplify-code`, `/compound-engineering:ce-code-review` |
 | Open PR | Developer | Branch | PR titled `<TICKET-KEY> short summary`, template filled | PR template complete | `/compound-engineering:ce-commit-push-pr` |
 | CI gates | CI | PR | Typecheck, lint, tests, FSD rules, dead code, commit format, docs check, secret scan, ticket-key check results | All required checks green | none |
@@ -50,4 +50,4 @@ flowchart TB
 
 ## Dependency updates
 
-Dependabot opens one weekly PR for npm minor and patch updates, and one for GitHub Actions. Major updates of `expo`, `react` and `react-native` are ignored, because they move together with an Expo SDK upgrade, which is done by hand. The `checks` job runs `npx expo install --check`, so an update PR that leaves a package out of line with the installed Expo SDK fails. Review these PRs like any other; the lockfile rule in `docs/adr/0005-npm-with-npm-10-lockfile.md` still applies.
+Dependabot opens one weekly PR for minor and patch updates of the dependencies, and one for GitHub Actions. Major updates of `expo`, `react` and `react-native` are ignored, because they move together with an Expo SDK upgrade, which is done by hand. The `checks` job runs `pnpm expo install --check`, so an update PR that leaves a package out of line with the installed Expo SDK fails. Review these PRs like any other; the package manager and its lockfile rules are in `docs/modules/package-manager.md`.

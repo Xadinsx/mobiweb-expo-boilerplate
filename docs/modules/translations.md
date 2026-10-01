@@ -29,12 +29,12 @@ decision: ../adr/0006-theming-storage-and-translations.md
 
 ## Rules
 
-- Text shown to users goes through `useTranslation()` and a key in `src/shared/config/i18n/resources.ts`, in every language the boilerplate ships (the registry is `src/shared/config/i18n/languages.ts`). Keys are type-checked, so a missing translation fails `npm run typecheck`. Data from a backend or fixtures is not translated.
+- Text shown to users goes through `useTranslation()` and a key in `src/shared/config/i18n/resources.ts`, in every language the boilerplate ships (the registry is `src/shared/config/i18n/languages.ts`). Keys are type-checked, so a missing translation fails `pnpm typecheck`. Data from a backend or fixtures is not translated.
 - Adding a language is a translation object in `resources.ts` plus one line in the registry. A vendor lists a language only if the registry has it; the app refuses to start otherwise.
 
 ## Checks
 
-- `npm run typecheck` fails on a missing key or translation.
+- `pnpm typecheck` fails on a missing key or translation.
 - `src/shared/config/i18n/languages.test.ts` and `resolve-language.test.ts`.
 
 ## Leftover checks

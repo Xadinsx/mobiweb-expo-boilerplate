@@ -4,13 +4,13 @@ Goal: ship a small first PR with Claude Code by the end of the day. Read `docs/a
 
 ## Set up
 
-1. Install Node 22.12 or newer and Claude Code.
-2. Clone the repo and run `npm ci`.
+1. Install Node 22 (the version in `.nvmrc`), run `corepack enable` so pnpm matches `package.json`, and install Claude Code.
+2. Clone the repo and run `pnpm install`.
 3. Open the repo in Claude Code. It offers the Compound Engineering plugin from `.claude/settings.json`; accept it. The plugin is third-party code that runs with your permissions, so read what it adds before relying on it.
 4. Install the three Callstack skills this project uses, and no others, since every installed skill adds to context:
 
    ```bash
-   npx skills@latest add callstackincubator/agent-skills
+   pnpm dlx skills@latest add callstackincubator/agent-skills
    ```
 
    Pick `react-native-best-practices`, `react-native-testing`, and `agent-device` in the picker.
@@ -20,7 +20,7 @@ Goal: ship a small first PR with Claude Code by the end of the day. Read `docs/a
 
 1. Take a small ticket and create a branch named `<TICKET-KEY>-short-name` once the team uses Jira, or a short descriptive name until then.
 2. Start a fresh Claude Code session. For anything beyond a small fix, run `/compound-engineering:ce-plan` first.
-3. Implement with `/compound-engineering:ce-work`. Use Conventional Commits, and update the feature doc (see `docs/ai/docs-workflow.md`). Run `npm run typecheck`, `npm run lint`, `npm test`, `npm run fsd`, and `npm run dead-code`.
+3. Implement with `/compound-engineering:ce-work`. Use Conventional Commits, and update the feature doc (see `docs/ai/docs-workflow.md`). Run `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm fsd`, and `pnpm dead-code`.
 4. Run `/compound-engineering:ce-simplify-code`, then `/compound-engineering:ce-code-review`, and fix what they raise.
 5. Open the PR with `/compound-engineering:ce-commit-push-pr`. Fill in "Decisions weighed" and the token total from `/cost`.
 6. Address review comments. When the same comment appears twice, capture it as a rule (see below).

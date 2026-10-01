@@ -1,7 +1,7 @@
 // Checks that a vendor's app contains nothing of any other vendor. Every vendor is exported
 // as an Android bundle; the export must not contain another vendor's identifying values
 // (from its vendor.json) or another vendor's asset files (compared by content).
-// Run with `npm run vendor-isolation`.
+// Run with `pnpm vendor-isolation`.
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
@@ -83,7 +83,7 @@ for (const name of names) {
   try {
     try {
       execFileSync(
-        "npx",
+        "pnpm",
         [
           "expo",
           "export",

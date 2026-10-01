@@ -51,12 +51,12 @@ Remove `.claude/skills/new-project/` with `git rm -r`. Keep `add-vendor` and `mo
 Run, and fix what they report, until all pass (skip only checks of a dropped module):
 
 ```bash
-npx eslint . --fix
-npm run typecheck
-npm test
-npm run fsd
-npm run dead-code
-npm run vendor-isolation
+pnpm exec eslint . --fix
+pnpm typecheck
+pnpm test
+pnpm fsd
+pnpm dead-code
+pnpm vendor-isolation
 ```
 
 Then confirm nothing of the boilerplate is left. This must return nothing:
@@ -65,7 +65,7 @@ Then confirm nothing of the boilerplate is left. This must return nothing:
 grep -rniI "mobiweb\|expoboilerplate\|sample-single\|samplesingle\|@your-org" . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=adr --exclude=package-lock.json
 ```
 
-ADRs may still name the boilerplate's origin; that is history and stays. Also run `APP_VARIANT=default npx expo config --type public` and check the name and ids are the client's. Check `git diff package.json`: the `android` and `ios` scripts stay `expo run:android` and `expo run:ios`. If you cannot get green, stop and list what is left; never report success.
+ADRs may still name the boilerplate's origin; that is history and stays. Also run `APP_VARIANT=default pnpm expo config --type public` and check the name and ids are the client's. Check `git diff package.json`: the `android` and `ios` scripts stay `expo run:android` and `expo run:ios`. If you cannot get green, stop and list what is left; never report success.
 
 ## 7. Report
 

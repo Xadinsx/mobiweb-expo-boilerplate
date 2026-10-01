@@ -24,7 +24,7 @@ Follow "On swap or removal" (or "Adds" for an add) in order. For a removal or sw
 
 - Remove the module's dependencies, native plugin and config entries, scripts, CI steps (and required checks, which the user must change in GitHub; tell them), docs, and tests that only exist for it.
 - Remove the module's rules from its manifest if it is removed. For a swap, rewrite them to match what is now installed. Rules live in the manifest, not in `docs/ai/house-style.md`.
-- After changing dependencies, regenerate the lockfile with `npx -y npm@10 install` (`docs/adr/0005-npm-with-npm-10-lockfile.md`).
+- After changing dependencies, run `pnpm install` so `pnpm-lock.yaml` is updated (`docs/modules/package-manager.md`).
 - Keep the vendor files working: `vendors/*/vendor.json` stays valid, and every vendor still builds.
 - Change the minimum: do not touch code the manifest does not cover. Do not edit the other skills in `.claude/skills`: they read the module index and skip what a removed module owned.
 
@@ -37,12 +37,12 @@ For a swap or a removal of a recommended default, write a deviation ADR from `do
 Run, and fix what they report, until all pass:
 
 ```bash
-npx eslint . --fix
-npm run typecheck
-npm test
-npm run fsd
-npm run dead-code
-npm run vendor-isolation
+pnpm exec eslint . --fix
+pnpm typecheck
+pnpm test
+pnpm fsd
+pnpm dead-code
+pnpm vendor-isolation
 ```
 
 If you removed one of these checks (for example the architecture check), skip only that one. Then run every search under the manifest's "Leftover checks". Each must return nothing, except mentions inside the deviation ADR. After an add, the files it lists must exist. A failing check, or a leftover that is not cleared, means the work is not finished: do not report success. Stop and list what is left.

@@ -33,7 +33,7 @@ A human reviewer signs off on that judgment. Tools such as `knip` only find cand
 
 Rules that only make sense with one capability live in that capability's manifest, so declining the capability leaves no stale rule. Read the manifest before changing code it covers. The index is `docs/modules/README.md`.
 
-- Code layout, layers and public APIs: [architecture](../modules/architecture.md) (Feature-Sliced Design, `npm run fsd`).
+- Code layout, layers and public APIs: [architecture](../modules/architecture.md) (Feature-Sliced Design, `pnpm fsd`).
 - Styles, theme tokens and colors: [styling](../modules/styling.md).
 - Text shown to users and languages: [translations](../modules/translations.md).
 - Storing values on the device: [storage](../modules/storage.md).
@@ -49,4 +49,4 @@ Examples: `items-main-list`, `items-row-2-button`, `detail-title-text`.
 
 ## Checks
 
-Run `npm run typecheck`, `npm run lint`, `npm test`, `npm run fsd`, and `npm run dead-code` before opening a PR. Formatting comes from Prettier through ESLint; run `npx eslint . --fix` to apply it.
+Run `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm fsd`, and `pnpm dead-code` before opening a PR. Formatting comes from Prettier through ESLint; run `pnpm exec eslint . --fix` to apply it.

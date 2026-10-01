@@ -26,7 +26,7 @@ jobs:
         env:
           BASE_REF: ${{ github.base_ref }}
         run: |
-          if git diff --name-only "origin/$BASE_REF" HEAD | grep -E '^(src/|app/|vendors/|app\.config\.ts$|metro\.config\.js$|jest\.config\.js$|babel\.config\.js$|index\.ts$|package(-lock)?\.json$|tsconfig\.json$|scripts/agent-qa/|\.github/workflows/qa-agent\.yml$)'; then
+          if git diff --name-only "origin/$BASE_REF" HEAD | grep -E '^(src/|app/|vendors/|app\.config\.ts$|metro\.config\.js$|jest\.config\.js$|babel\.config\.js$|index\.ts$|package\.json$|pnpm-lock\.yaml$|pnpm-workspace\.yaml$|\.npmrc$|\.nvmrc$|tsconfig\.json$|scripts/agent-qa/|\.github/workflows/qa-agent\.yml$)'; then
             echo "app=true" >> "$GITHUB_OUTPUT"
           else
             echo "app=false" >> "$GITHUB_OUTPUT"
@@ -51,16 +51,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: npm
+          node-version-file: .nvmrc
+          cache: pnpm
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
       - uses: gradle/actions/setup-gradle@v4
-      - run: npm ci
+      - run: pnpm install --frozen-lockfile
       - name: Choose the reference vendor
         # Every vendor builds through the same code; CI builds one of them (repository variable REFERENCE_VENDOR).
         run: |
@@ -68,7 +69,7 @@ jobs:
           echo "APP_VARIANT=$VENDOR" >> "$GITHUB_ENV"
           echo "APP_ID=$(node -p "require('./vendors/$VENDOR/vendor.json').identity.androidPackage")" >> "$GITHUB_ENV"
       - name: Generate the Android project
-        run: npx expo prebuild --platform android --no-install
+        run: pnpm exec expo prebuild --platform android --no-install
       - name: Build the release APK
         working-directory: android
         # The emulator is x86_64, so skip compiling the other CPU architectures.
@@ -79,7 +80,12 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
       - name: Install the QA tools
-        run: npm install -g agent-device@0.21.16 @anthropic-ai/claude-code@2.1.285
+        run: |
+          export PNPM_HOME="$HOME/.local/share/pnpm"
+          mkdir -p "$PNPM_HOME"
+          export PATH="$PNPM_HOME:$PATH"
+          echo "$PNPM_HOME" >> "$GITHUB_PATH"
+          pnpm add -g agent-device@0.21.16 @anthropic-ai/claude-code@2.1.285
       - name: Prepare the agent input
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}

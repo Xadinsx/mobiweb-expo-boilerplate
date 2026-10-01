@@ -23,8 +23,8 @@ Run the `add-vendor` skill (`/add-vendor` in Claude Code). It asks for the vendo
 Set `APP_VARIANT` to the vendor's folder name. It defaults to `default`.
 
 ```bash
-APP_VARIANT=default npx expo run:android
-APP_VARIANT=default npx expo start
+APP_VARIANT=default pnpm expo run:android
+APP_VARIANT=default pnpm expo start
 ```
 
 Unknown names fail with a list of the vendors that exist. Local runs, CI and EAS builds all use the same variable; `eas.json` profiles set it under `env`.
@@ -46,8 +46,8 @@ Unknown names fail with a list of the vendors that exist. Local runs, CI and EAS
 
 ## Tests and checks per vendor
 
-- `npm test` finds every folder in `vendors/`, validates it, and checks that names, schemes and ids are unique.
-- `npm run vendor-isolation` (in the `checks` job) exports each vendor's Android bundle and fails if it contains another vendor's name, scheme, ids, API URL or asset files. Values one vendor shares with or contains from another also fail, because a search for them could not tell the vendors apart.
+- `pnpm test` finds every folder in `vendors/`, validates it, and checks that names, schemes and ids are unique.
+- `pnpm vendor-isolation` (in the `checks` job) exports each vendor's Android bundle and fails if it contains another vendor's name, scheme, ids, API URL or asset files. Values one vendor shares with or contains from another also fail, because a search for them could not tell the vendors apart.
 - Device checks build one vendor, the reference vendor (repository variable `REFERENCE_VENDOR`, `default` when unset). To try another vendor on a device, change the variable or run it locally with `APP_VARIANT`.
 - Shared Maestro flows in `.maestro/flows` use `appId: ${APP_ID}`. A flow that only fits some vendors goes in `vendors/<name>/maestro/`.
 - `vendors/<name>/qa-notes.md` tells the QA agent what the vendor's app looks like and what it can do.

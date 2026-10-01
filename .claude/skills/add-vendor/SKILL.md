@@ -29,11 +29,11 @@ Fonts and splash screens are not supported yet; say so if asked.
 Before writing anything, refuse and say what to do instead when:
 
 - `vendors/<name>` already exists.
-- The name, URL scheme, bundle id, package or API URL equals or contains one of another vendor's values, or the reverse. (`npm run vendor-isolation` enforces this; check the values yourself first.)
+- The name, URL scheme, bundle id, package or API URL equals or contains one of another vendor's values, or the reverse. (`pnpm vendor-isolation` enforces this; check the values yourself first.)
 - A language is not in the registry `src/shared/config/i18n/languages.ts`. Offer to add it (step 4) or to drop it.
 - A scheme's palette is missing, or a value is a secret.
 
-If `npm run vendor-isolation` later flags a value of the new vendor that also appears in library text (a very short scheme, for example), choose a more distinctive value.
+If `pnpm vendor-isolation` later flags a value of the new vendor that also appears in library text (a very short scheme, for example), choose a more distinctive value.
 
 ## 3. Write the vendor
 
@@ -55,15 +55,15 @@ Only if the user asks for it: add the translations as a new object in `src/share
 Run, and fix what they report, until all pass:
 
 ```bash
-npx eslint . --fix
-npm run typecheck
-npm test
-npm run fsd
-npm run dead-code
-npm run vendor-isolation
+pnpm exec eslint . --fix
+pnpm typecheck
+pnpm test
+pnpm fsd
+pnpm dead-code
+pnpm vendor-isolation
 ```
 
-`npm test` validates every vendor, and `npm run vendor-isolation` exports every vendor's bundle. Also run `APP_VARIANT=<name> npx expo config --type public` and confirm the name and ids are the new vendor's. If you cannot get green, stop and list what is left; do not report success.
+`pnpm test` validates every vendor, and `pnpm vendor-isolation` exports every vendor's bundle. Also run `APP_VARIANT=<name> pnpm expo config --type public` and confirm the name and ids are the new vendor's. If you cannot get green, stop and list what is left; do not report success.
 
 `package.json` may be rewritten by Expo tooling (the `android` and `ios` scripts must stay `expo run:android` and `expo run:ios`). Check `git diff package.json` is empty.
 
