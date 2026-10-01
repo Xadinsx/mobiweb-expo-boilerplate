@@ -35,7 +35,7 @@ If `npm run vendor-isolation` later flags a value of the new vendor that also ap
 
 ## 3. Write the vendor
 
-Copy the shape of `vendors/default/` and `vendors/sample-single/`:
+Copy the shape of an existing vendor, for example `vendors/default/`:
 
 - `vendors/<name>/vendor.json` from the answers.
 - `vendors/<name>/runtime.ts`, the same as the other vendors' (it requires `./assets/icon.png` as the logo).

@@ -16,7 +16,7 @@ vendors/<name>/assets/       icon, adaptive icon and other images
 
 ## Adding a vendor
 
-Run the `add-vendor` skill (`/add-vendor` in Claude Code). It asks for the vendor's identity, look, schemes, languages, features and backend, writes `vendors/<name>/`, adds an `eas.json` profile, and runs the checks until they pass. Doing it by hand means creating the same files by copying `vendors/sample-single/`.
+Run the `add-vendor` skill (`/add-vendor` in Claude Code). It asks for the vendor's identity, look, schemes, languages, features and backend, writes `vendors/<name>/`, adds an `eas.json` profile, and runs the checks until they pass. Doing it by hand means creating the same files by copying an existing vendor folder.
 
 ## Choosing a vendor
 
