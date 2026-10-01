@@ -7,8 +7,8 @@ type Props = {
 };
 
 export function QueryProvider({ children }: Props) {
-  // One client per mount, kept across renders. One retry, not the library's three with
-  // backoff, so a failed request reaches the error screen within a couple of seconds.
+  // One retry, not the library's three with backoff, so a failed request reaches the
+  // error screen within a couple of seconds.
   const [client] = useState(
     () => new QueryClient({ defaultOptions: { queries: { retry: 1 } } }),
   );
