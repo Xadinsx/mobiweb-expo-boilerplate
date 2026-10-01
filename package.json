@@ -48,5 +48,9 @@
     "fsd": "steiger src",
     "vendor-isolation": "node scripts/ci/vendor-isolation.mjs"
   },
-  "private": true
+  "private": true,
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": ">=22.12.0 <23"
+  }
 }
