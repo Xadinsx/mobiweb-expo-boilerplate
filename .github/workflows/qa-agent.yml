@@ -81,10 +81,11 @@ jobs:
           sudo udevadm trigger --name-match=kvm
       - name: Install the QA tools
         run: |
+          # pnpm 11 puts global binaries in $PNPM_HOME/bin, and refuses to install unless that is on the path.
           export PNPM_HOME="$HOME/.local/share/pnpm"
-          mkdir -p "$PNPM_HOME"
-          export PATH="$PNPM_HOME:$PATH"
-          echo "$PNPM_HOME" >> "$GITHUB_PATH"
+          mkdir -p "$PNPM_HOME/bin"
+          export PATH="$PNPM_HOME/bin:$PATH"
+          echo "$PNPM_HOME/bin" >> "$GITHUB_PATH"
           pnpm add -g agent-device@0.21.16 @anthropic-ai/claude-code@2.1.285
       - name: Prepare the agent input
         env:
