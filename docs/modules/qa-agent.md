@@ -17,6 +17,8 @@ decision: ../adr/0004-qa-agent-claude-code.md
 
 ## Where the app depends on it
 
+- The QA agent job builds the APK through `.github/actions/build-android-apk`, which the device checks share. Keep that action while either module stays; delete it only when both are removed.
+
 - `agent-device` and `claude` in `.github/workflows` and `scripts/agent-qa`.
 - `qa-notes.md` in `vendors/`, `scripts/agent-qa/run-agent.sh` and `docs/vendors.md`.
 - `qa-agent` in `README.md`, `CLAUDE.md`, `docs/ai/lifecycle.md`, `docs/ai/house-style.md`, `docs/features/items.md`, `.github/pull_request_template.md` (the QA evidence section), `.github/CODEOWNERS` (the `scripts/agent-qa/` entry) and the branch protection's required checks.
