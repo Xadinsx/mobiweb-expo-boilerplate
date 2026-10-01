@@ -24,7 +24,7 @@ Refuse and say why if `vendors/sample-single` does not exist (the project was al
 The folder stays `vendors/default` for the life of the project, so nothing else has to refer to a changed name.
 
 - Rewrite `vendors/default/vendor.json` from the answers, in the shape of the current file.
-- Replace `vendors/default/assets/` with the files they gave, or placeholders from `python3 .claude/skills/add-vendor/placeholder-assets.py vendors/default/assets <background-hex> <accent-hex>`.
+- Replace `vendors/default/assets/` with the files they gave, or placeholders from `python3 .claude/skills/add-vendor/placeholder-assets.py vendors/default/assets <background-hex> <accent-hex>`. Run exactly that script and do not use or install any other image tool.
 - Rewrite `vendors/default/qa-notes.md` for the client's app (keep "- App id: `${APP_ID}`.").
 - Remove `vendors/sample-single` completely, and the sample vendor's mentions: the `sample-single` paragraph in `docs/vendors.md`.
 - In `app.config.ts`, put the client's EAS owner, project id and slug in `boilerplateEas`. If they are not known yet, ask the user to run `eas init` and say you have left it for them.
