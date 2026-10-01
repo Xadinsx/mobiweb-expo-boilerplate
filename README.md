@@ -16,6 +16,19 @@ pnpm expo run:android   # or: pnpm expo run:ios
 
 The app uses native modules (Unistyles, MMKV), so Expo Go does not work. `expo run:android` builds a development app and starts it; after that, `pnpm expo start` reopens the dev server.
 
+## Start a client project
+
+This repository is a GitHub template, and `v0.1.0` is the first version of it.
+
+1. Use the template (GitHub's "Use this template") to create the client's repository, clone it, run `corepack enable` and `pnpm install`, and create a branch.
+2. Open the repository in Claude Code and run `/new-project`. It asks for the client's name, the first vendor's identity and look, the code owners, and for each module (styling, storage, translations, architecture check, device checks, QA agent, package manager) whether to keep the recommended default, swap it or drop it. A swap or a drop is recorded as a deviation ADR with the reason.
+3. It then rewrites `vendors/default` as the client's first vendor, removes the sample vendor, the boilerplate's plans and itself, applies your module choices, and runs every check until they pass. The ADR index records which boilerplate version the project started from.
+4. Review the diff like any other, commit it on the branch, and open a pull request.
+
+A few things only you can do, and the skill lists them when it finishes: run `eas init` and put the ids in `app.config.ts`, set branch protection and the required checks in GitHub, add the QA agent's token if you keep that module, and get any approval your client needs for third-party services.
+
+Afterwards, `/add-vendor` adds another vendor to the project and `/module` adds, removes or swaps a module. Both are described in `docs/vendors.md` and `docs/modules/README.md`.
+
 ## Commands
 
 | Command | What it does |

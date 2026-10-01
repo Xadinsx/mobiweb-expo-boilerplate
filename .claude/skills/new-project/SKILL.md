@@ -29,14 +29,14 @@ The folder stays `vendors/default` for the life of the project, so nothing else 
 - Rewrite `vendors/default/qa-notes.md` for the client's app (keep "- App id: `${APP_ID}`.").
 - Remove `vendors/sample-single` completely with `git rm -r`, and the sample vendor's mentions: the `sample-single` paragraph in `docs/vendors.md`.
 - In `app.config.ts`, put the client's EAS owner, project id and slug in `boilerplateEas`. If they are not known yet, ask the user to run `eas init` and say you have left it for them.
-- Set the `name` in `package.json` and, if it still has the boilerplate's, the version to `0.1.0`.
+- Read the boilerplate's `version` from `package.json` first and keep it for the ADR note below. Then set the `name` in `package.json` and the version to `0.1.0`.
 
 ## 3. Make the project's own docs
 
 - Rewrite the first heading and opening of `README.md` and `CLAUDE.md` for the client's project. Keep the command tables, the workflow and the links. Remove sentences that describe the boilerplate itself, such as what the template contains.
 - Replace the `@your-org/your-team` placeholder in `.github/CODEOWNERS` and remove its "Replace ..." comment. Remove the matching sentence in `docs/ai/lifecycle.md`.
 - Delete `docs/plans/` content that belongs to the boilerplate (every file there now) with `git rm -r`. The boilerplate's ADRs in `docs/adr/` stay as the decisions the project inherits; do not edit them.
-- Add a sentence to `docs/adr/README.md` saying the ADRs that exist now are inherited from the boilerplate, and the project's own continue the numbering.
+- Add a sentence to `docs/adr/README.md` saying the ADRs that exist now are inherited from the boilerplate at the version you read above (for example "boilerplate v0.1.0"), and the project's own continue the numbering.
 
 ## 4. Apply the module choices
 
@@ -64,10 +64,10 @@ vendor-isolation
 Then confirm nothing of the boilerplate is left. This must return nothing:
 
 ```bash
-grep -rniI "mobiweb\|expoboilerplate\|sample-single\|samplesingle\|@your-org" . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=adr --exclude=package-lock.json
+grep -rniI "mobiweb\|expoboilerplate\|sample-single\|samplesingle\|@your-org" . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=adr --exclude=pnpm-lock.yaml --exclude=package-lock.json
 ```
 
-ADRs may still name the boilerplate's origin; that is history and stays. Also run ``expo config --type public` with `APP_VARIANT=default`` and check the name and ids are the client's. Check `git diff package.json`: the `android` and `ios` scripts stay `expo run:android` and `expo run:ios`. If you cannot get green, stop and list what is left; never report success.
+ADRs may still name the boilerplate's origin; that is history and stays. Also run `expo config --type public` with `APP_VARIANT=default` set, and check the name and ids are the client's. Check `git diff package.json`: the `android` and `ios` scripts stay `expo run:android` and `expo run:ios`. If you cannot get green, stop and list what is left; never report success.
 
 ## 7. Report
 
