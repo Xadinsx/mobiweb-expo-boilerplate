@@ -9,7 +9,7 @@ export function createHttpItemSource(client: JsonClient): ItemSource {
     list: () => client.get("/items"),
     get: async (id) => {
       try {
-        return await client.get(`/items/${id}`);
+        return await client.get(`/items/${encodeURIComponent(id)}`);
       } catch (error) {
         if (error instanceof ApiError && error.status === 404) {
           return null;

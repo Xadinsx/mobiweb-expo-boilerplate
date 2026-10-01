@@ -17,6 +17,15 @@ describe("the HTTP item source", () => {
     expect(client.get).toHaveBeenNthCalledWith(2, "/items/2");
   });
 
+  it("encodes the id so it cannot reach another path on the backend", async () => {
+    const client = clientAnswering(() => Promise.resolve({}));
+    const source = createHttpItemSource(client);
+
+    await source.get("../admin?x=1");
+
+    expect(client.get).toHaveBeenCalledWith("/items/..%2Fadmin%3Fx%3D1");
+  });
+
   it("turns a 404 on one item into null", async () => {
     const source = createHttpItemSource(
       clientAnswering(() =>
