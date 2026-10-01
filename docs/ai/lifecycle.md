@@ -47,3 +47,7 @@ flowchart TB
 - Not enforced yet: `maestro-android` and `qa-agent` are advisory until they have proven stable and are added to the required checks, so a red device check does not block a merge by itself and reviewers must look at it. See `docs/ai/qa-agent.md` for how the QA agent works and how to acknowledge an inconclusive run.
 - Before turning on "Require review from Code Owners", replace the `@your-org/your-team` placeholder in `.github/CODEOWNERS` with the real team. Until then, code owner review is not enforced.
 - The reviewer reads the diff and the "Decisions weighed" section, not only the green checks. A passing QA agent report is evidence, not approval.
+
+## Dependency updates
+
+Dependabot opens one weekly PR for npm minor and patch updates, and one for GitHub Actions. Major updates of `expo`, `react` and `react-native` are ignored, because they move together with an Expo SDK upgrade, which is done by hand. The `checks` job runs `npx expo install --check`, so an update PR that leaves a package out of line with the installed Expo SDK fails. Review these PRs like any other; the lockfile rule in `docs/adr/0005-npm-with-npm-10-lockfile.md` still applies.
