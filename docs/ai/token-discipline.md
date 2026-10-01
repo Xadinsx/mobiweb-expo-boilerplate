@@ -40,8 +40,8 @@ Measured on 2026-09-30 and 2026-10-01 by running each skill headless on a throwa
 | `/module`, remove the architecture check | 54 | $1.03 | not recorded |
 | `/module`, remove the device checks | 69 | $1.40 | 4.5 min |
 | `/module`, remove the QA agent | 100 | $2.52 | not recorded |
-| `/module`, swap styling to plain `StyleSheet` | 116 | $3.46 | about 10 min |
-| `/new-project`, swapping styling | 159 | $3.66 | about 8 min |
+| `/module`, swap styling to plain `StyleSheet` | 116 | $3.46 | not recorded |
+| `/new-project`, swapping styling | 159 | $3.66 | not recorded |
 
 The chained run (`/new-project` dropping the QA agent, then `/add-vendor`, then `/module` removing device checks) cost about $3.43 in total over 152 turns and 11 minutes of run time. Its first and last steps stopped to ask for permission to edit another skill, which led to the module-aware skills described below; the costs above are what those runs spent before stopping.
 
