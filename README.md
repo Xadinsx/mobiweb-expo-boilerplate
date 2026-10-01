@@ -25,6 +25,8 @@ This repository is a GitHub template, and `v0.1.0` is the first version of it.
 3. It then rewrites `vendors/default` as the client's first vendor, removes the sample vendor, the boilerplate's plans and itself, applies your module choices, and runs every check until they pass. The ADR index records which boilerplate version the project started from.
 4. Review the diff like any other, commit it on the branch, and open a pull request.
 
+The items list and detail are a sample feature. They stay as the reference for structure, tests and the device flow; replace them with the client's first real feature, and rewrite `.maestro/flows`, each vendor's `qa-notes.md` and `docs/features/items.md` with it.
+
 A few things only you can do, and the skill lists them when it finishes: run `eas init` and put the ids in `app.config.ts`, set branch protection and the required checks in GitHub, add the QA agent's token if you keep that module, and get any approval your client needs for third-party services.
 
 Afterwards, `/add-vendor` adds another vendor to the project and `/module` adds, removes or swaps a module. Both are described in `docs/vendors.md` and `docs/modules/README.md`.
