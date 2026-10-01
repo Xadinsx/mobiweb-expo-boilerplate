@@ -44,6 +44,7 @@ Measured on 2026-09-30 and 2026-10-01 by running each skill headless on a throwa
 | `/new-project`, swapping styling | 159 | $3.66 | not recorded |
 | `/new-project`, keeping every module (on pnpm) | 77 | $1.18 | 2.4 min |
 | `/module`, swap pnpm for npm | 127 | $3.97 | 9.6 min |
+| `/module`, remove the server state library | 82 | $2.15 | 5.8 min |
 
 The chained run (`/new-project` dropping the QA agent, then `/add-vendor`, then `/module` removing device checks) cost about $3.43 in total over 152 turns and 11 minutes of run time. Its first and last steps stopped to ask for permission to edit another skill, which led to the module-aware skills described below; the costs above are what those runs spent before stopping.
 

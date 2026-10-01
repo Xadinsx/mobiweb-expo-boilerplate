@@ -42,7 +42,7 @@ The sample app shows a list of items. Tapping an item opens its detail. It exist
 ## Decisions
 
 - Structure: [ADR 0001](../adr/0001-feature-sliced-design.md).
-- Server data: TanStack Query through the item API (the module manifest and ADR follow in the next change).
+- Server data: TanStack Query through the item API, [ADR 0009](../adr/0009-server-state-with-tanstack-query.md) and the [server state module](../modules/server-state.md).
 
 ## Limits
 
