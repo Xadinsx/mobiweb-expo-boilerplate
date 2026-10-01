@@ -22,7 +22,7 @@ The sample app shows a list of items. Tapping an item opens its detail. It exist
 
 ## Code
 
-- `src/entities/item` holds the `Item` type, the data, and the `ItemDetail` view.
+- `src/entities/item` holds the `Item` type, the data, and the `ItemDetail` view. Its `api` folder is the path data will come through: the backend's item shape and the mapper to `Item`, an in-memory mock source (the default) and an HTTP source for a real backend. The pages do not use it yet.
 - `src/pages/items` holds the list page and its `ItemsList` component.
 - `src/pages/item-detail` reads the id from the route and shows the item.
 - The route files in `app/` re-export the pages.
@@ -41,4 +41,4 @@ The sample app shows a list of items. Tapping an item opens its detail. It exist
 
 ## Limits
 
-The items are hard-coded. A real project replaces them with data from an API.
+This is a sample feature, kept as the reference for how a feature is structured (slice, page, route, tests, device flow). A client project replaces it with its first real feature, and rewrites the Maestro flow in `.maestro/flows`, the `qa-notes.md` of its vendors, and this doc to match. The items are hard-coded for now; the `api` folder shows how a backend connects.
