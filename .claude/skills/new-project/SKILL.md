@@ -26,7 +26,7 @@ The folder stays `vendors/default` for the life of the project, so nothing else 
 - Rewrite `vendors/default/vendor.json` from the answers, in the shape of the current file.
 - Replace `vendors/default/assets/` with the files they gave, or placeholders from `python3 .claude/skills/add-vendor/placeholder-assets.py vendors/default/assets <background-hex> <accent-hex>`. Run exactly that script and do not use or install any other image tool.
 - Rewrite `vendors/default/qa-notes.md` for the client's app (keep "- App id: `${APP_ID}`.").
-- Remove `vendors/sample-single` completely, and the sample vendor's mentions: the `sample-single` paragraph in `docs/vendors.md`.
+- Remove `vendors/sample-single` completely with `git rm -r`, and the sample vendor's mentions: the `sample-single` paragraph in `docs/vendors.md`.
 - In `app.config.ts`, put the client's EAS owner, project id and slug in `boilerplateEas`. If they are not known yet, ask the user to run `eas init` and say you have left it for them.
 - Set the `name` in `package.json` and, if it still has the boilerplate's, the version to `0.1.0`.
 
@@ -34,7 +34,7 @@ The folder stays `vendors/default` for the life of the project, so nothing else 
 
 - Rewrite the first heading and opening of `README.md` and `CLAUDE.md` for the client's project. Keep the command tables, the workflow and the links. Remove sentences that describe the boilerplate itself, such as what the template contains.
 - Replace the `@your-org/your-team` placeholder in `.github/CODEOWNERS` and remove its "Replace ..." comment. Remove the matching sentence in `docs/ai/lifecycle.md`.
-- Delete `docs/plans/` content that belongs to the boilerplate (every file there now). The boilerplate's ADRs in `docs/adr/` stay as the decisions the project inherits; do not edit them.
+- Delete `docs/plans/` content that belongs to the boilerplate (every file there now) with `git rm -r`. The boilerplate's ADRs in `docs/adr/` stay as the decisions the project inherits; do not edit them.
 - Add a sentence to `docs/adr/README.md` saying the ADRs that exist now are inherited from the boilerplate, and the project's own continue the numbering.
 
 ## 4. Apply the module choices
@@ -43,7 +43,7 @@ For each module the user swapped or dropped, follow `.claude/skills/module/SKILL
 
 ## 5. Delete this skill
 
-Remove `.claude/skills/new-project/`. Keep `add-vendor` and `module`.
+Remove `.claude/skills/new-project/` with `git rm -r`. Keep `add-vendor` and `module`.
 
 ## 6. Check until green
 
