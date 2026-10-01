@@ -1,6 +1,22 @@
 import { ItemsList } from "./ItemsList";
-import { items } from "@/entities/item";
+import { useItems } from "@/entities/item";
+import { ErrorState, LoadingState } from "@/shared/ui";
 
 export function ItemsPage() {
-  return <ItemsList items={items} />;
+  const { data, isError, isFetching, refetch } = useItems();
+
+  if (data) {
+    return <ItemsList items={data} />;
+  }
+  if (isError && !isFetching) {
+    return (
+      <ErrorState
+        testIdPrefix="items"
+        onRetry={() => {
+          void refetch();
+        }}
+      />
+    );
+  }
+  return <LoadingState testIdPrefix="items" />;
 }
