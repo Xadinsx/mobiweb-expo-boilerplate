@@ -18,7 +18,7 @@ The app uses native modules (Unistyles, MMKV), so Expo Go does not work. `expo r
 
 ## Start a client project
 
-This repository is a GitHub template, and `v0.1.0` is the first version of it.
+This repository is a GitHub template. Versions are tagged (`v0.2.0` is the latest), and `/new-project` records which one a project started from.
 
 1. Use the template (GitHub's "Use this template") to create the client's repository, clone it, run `corepack enable` and `pnpm install`, and create a branch.
 2. Open the repository in Claude Code and run `/new-project`. It asks for the client's name, the first vendor's identity and look, the code owners, and for each module (styling, storage, translations, architecture check, device checks, QA agent, package manager) whether to keep the recommended default, swap it or drop it. A swap or a drop is recorded as a deviation ADR with the reason.
