@@ -80,9 +80,13 @@ describe("createHttpClient timeout and cancel", () => {
     return jest.fn(
       (_url: string, init: { signal: AbortSignal }) =>
         new Promise<Response>((_resolve, reject) => {
-          init.signal.addEventListener("abort", () =>
-            reject(Object.assign(new Error("aborted"), { name: "AbortError" })),
-          );
+          const abortError = () =>
+            Object.assign(new Error("aborted"), { name: "AbortError" });
+          // Like the fetch React Native ships: a signal that is already aborted rejects at once.
+          if (init.signal.aborted) {
+            reject(abortError());
+          }
+          init.signal.addEventListener("abort", () => reject(abortError()));
         }),
     ) as unknown as typeof fetch;
   }
@@ -125,6 +129,40 @@ describe("createHttpClient timeout and cancel", () => {
     const caller = new AbortController();
 
     const failure = failureOf(client.get("/items", caller.signal));
+    caller.abort();
+    const error = await failure;
+
+    expect(error).not.toBeInstanceOf(ApiError);
+    expect(error).toMatchObject({ name: "AbortError" });
+  });
+
+  it("rethrows the abort when the signal was already aborted", async () => {
+    const client = createHttpClient("https://api.example.com", silentFetch());
+    const caller = new AbortController();
+    caller.abort();
+
+    const error = await failureOf(client.get("/items", caller.signal));
+
+    expect(error).not.toBeInstanceOf(ApiError);
+    expect(error).toMatchObject({ name: "AbortError" });
+  });
+
+  it("rethrows the abort when the caller cancels while the body is read", async () => {
+    const caller = new AbortController();
+    const fetchFn = jest.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: () =>
+        new Promise((_resolve, reject) => {
+          caller.signal.addEventListener("abort", () =>
+            reject(Object.assign(new Error("aborted"), { name: "AbortError" })),
+          );
+        }),
+    });
+    const client = createHttpClient("https://api.example.com", fetchFn);
+
+    const failure = failureOf(client.get("/items", caller.signal));
+    await Promise.resolve();
     caller.abort();
     const error = await failure;
 
