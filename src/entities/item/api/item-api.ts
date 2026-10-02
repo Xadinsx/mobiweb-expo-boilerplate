@@ -5,10 +5,11 @@ import { toItem, toItems } from "./to-item";
 
 export function createItemApi(source: ItemSource) {
   return {
-    list: async (): Promise<Item[]> => toItems(await source.list()),
+    list: async (signal?: AbortSignal): Promise<Item[]> =>
+      toItems(await source.list(signal)),
     /** Resolves null when the item does not exist. */
-    get: async (id: string): Promise<Item | null> => {
-      const body = await source.get(id);
+    get: async (id: string, signal?: AbortSignal): Promise<Item | null> => {
+      const body = await source.get(id, signal);
       return body === null ? null : toItem(body);
     },
   };
