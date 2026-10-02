@@ -34,7 +34,7 @@ The `docs-check` check fails a PR that changes feature code in `src/pages`, `src
 1. In the repository's Settings, Actions, General, allow GitHub Actions to create and approve pull requests.
 2. A pull request opened with the default token does not start the required checks, so the release PR could not be merged. Either create a fine-grained personal access token (contents and pull requests write) and store it as the `RELEASE_PLEASE_TOKEN` secret, or accept opening the release PR by hand.
 
-Then set the repository variable `RELEASE_PLEASE_ENABLED` to `true`. The first version in `.release-please-manifest.json` is `0.1.0`. Publishing to the stores stays a manual step.
+Then set the repository variable `RELEASE_PLEASE_ENABLED` to `true`. The version `release-please` starts from is the one in `.release-please-manifest.json`, kept equal to `package.json`. Publishing to the stores stays a manual step.
 
 ## With the agent
 
