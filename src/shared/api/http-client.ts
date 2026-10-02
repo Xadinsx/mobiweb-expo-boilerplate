@@ -30,7 +30,7 @@ export function createHttpClient(
         abort();
       }, timeoutMs);
 
-      // An abort that we or the caller caused is not a problem with the backend.
+      // A timeout is reported as a network error. A caller's cancel rethrows the abort as it is.
       const failure = (error: unknown, fallback: ApiError) => {
         if (timedOut) {
           return new ApiError("network", "The request timed out");
