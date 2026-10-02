@@ -54,6 +54,7 @@ Start with [`docs/ai/onboarding.md`](docs/ai/onboarding.md). The rest of [`docs/
 - [`../adr/`](docs/adr/): why the important decisions were made (architecture decision records).
 - [`docs-workflow.md`](docs/ai/docs-workflow.md): commit format, feature docs, ADRs and the docs check.
 - [`qa-agent.md`](docs/ai/qa-agent.md): the QA agent that checks the app on an emulator for each PR.
+- [`upgrading.md`](docs/ai/upgrading.md): how a project takes later boilerplate changes and moves to a new Expo SDK.
 
 [`CLAUDE.md`](CLAUDE.md) holds the short rules Claude Code reads in every session.
 

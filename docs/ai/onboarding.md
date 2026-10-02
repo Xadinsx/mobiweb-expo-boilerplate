@@ -39,3 +39,7 @@ Repeated review comments and bugs should not repeat a third time. When a mistake
 1. Run `/compound-engineering:ce-compound` to record what happened and why.
 2. If it is a rule the agent should always follow, add one short line to `CLAUDE.md` or `docs/ai/house-style.md`. If it needs detail, link to a doc from `CLAUDE.md`.
 3. Merge the rule through a normal PR so it is reviewed like code.
+
+## Later: upgrading
+
+A project made from the template takes boilerplate fixes by hand. See `docs/ai/upgrading.md`.
