@@ -13,8 +13,8 @@ describe("the HTTP item source", () => {
     await source.list();
     await source.get("2");
 
-    expect(client.get).toHaveBeenNthCalledWith(1, "/items");
-    expect(client.get).toHaveBeenNthCalledWith(2, "/items/2");
+    expect(client.get).toHaveBeenNthCalledWith(1, "/items", undefined);
+    expect(client.get).toHaveBeenNthCalledWith(2, "/items/2", undefined);
   });
 
   it("encodes the id so it cannot reach another path on the backend", async () => {
@@ -23,7 +23,22 @@ describe("the HTTP item source", () => {
 
     await source.get("../admin?x=1");
 
-    expect(client.get).toHaveBeenCalledWith("/items/..%2Fadmin%3Fx%3D1");
+    expect(client.get).toHaveBeenCalledWith(
+      "/items/..%2Fadmin%3Fx%3D1",
+      undefined,
+    );
+  });
+
+  it("hands the caller's abort signal to the client", async () => {
+    const client = clientAnswering(() => Promise.resolve({}));
+    const source = createHttpItemSource(client);
+    const { signal } = new AbortController();
+
+    await source.list(signal);
+    await source.get("2", signal);
+
+    expect(client.get).toHaveBeenNthCalledWith(1, "/items", signal);
+    expect(client.get).toHaveBeenNthCalledWith(2, "/items/2", signal);
   });
 
   it("turns a 404 on one item into null", async () => {

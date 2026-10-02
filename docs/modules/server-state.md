@@ -10,7 +10,7 @@ decision: ../adr/0009-server-state-with-tanstack-query.md
 ## Adds
 
 - Dependency `@tanstack/react-query`.
-- `src/shared/api`: `ApiError` (kind `network`, `http` or `invalid-response`, and the status for `http`) and `createHttpClient(baseUrl, fetch)`.
+- `src/shared/api`: `ApiError` (kind `network`, `http` or `invalid-response`, and the status for `http`) and `createHttpClient(baseUrl, fetch, { timeoutMs })`.
 - `src/entities/item/api`: the backend's item shape, the mapper to `Item`, an `ItemSource` interface with an in-memory mock (the default) and an HTTP source, and `itemApi`.
 - `src/entities/item/model`: the `useItems` and `useItem(id)` hooks.
 - `src/app/server-state`: `QueryProvider`, mounted in `RootLayout`.
@@ -56,7 +56,9 @@ The API layer (`shared/api`, `entities/item/api`) stays in both cases: it does n
 - Which source answers (mock or HTTP) is decided in one place, `src/entities/item/api/item-api.ts`. A project with a backend passes `createHttpItemSource(createHttpClient(vendor.backend.apiBaseUrl, fetch))` there. There is no runtime switch.
 - Every screen that loads data shows a loading view and an error view with Retry from `shared/ui`, with a test id prefix that follows the `<screen>-<element>-<role>` convention.
 - A test that renders a screen wraps it in its own `QueryClientProvider` with `retry: false` and `gcTime: Infinity`, and makes a request fail by spying on the entity's API.
-- A new resource adds: the backend shape and mapper, a source method for the mock and the HTTP source, an API method, a hook, and the loading and error handling on its page.
+- The HTTP client times out after 15 seconds by default and reports it as an `ApiError` of kind `network`; with the provider's one retry, a backend that never answers reaches the error view after about 31 seconds (two timeouts and a one-second backoff). The hooks pass the query's abort signal to the entity's API, and the HTTP source passes it to the client, so a screen that goes away cancels its request; a cancelled request rethrows the abort, not an `ApiError`. A new source method takes an optional `signal` and passes it on (the in-memory mock ignores it).
+- A new resource adds: the backend shape and mapper, a source method for the mock and the HTTP source, an API method, a hook that passes the signal, and the loading and error handling on its page.
+- Not built, for the first project with a real backend: app-focus and online-status handling, and persisting the cache for offline start.
 
 ## Checks
 

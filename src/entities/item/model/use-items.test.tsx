@@ -53,3 +53,21 @@ describe("useItem", () => {
     expect(result.current.isError).toBe(false);
   });
 });
+
+describe("cancelling a request", () => {
+  it("passes an abort signal to the API and aborts it when the screen goes away", async () => {
+    let received: AbortSignal | undefined;
+    jest.spyOn(itemApi, "list").mockImplementation((signal) => {
+      received = signal;
+      return new Promise(() => undefined);
+    });
+
+    const { unmount } = renderHook(() => useItems(), { wrapper });
+    await waitFor(() => expect(received).toBeInstanceOf(AbortSignal));
+    expect(received?.aborted).toBe(false);
+
+    unmount();
+
+    await waitFor(() => expect(received?.aborted).toBe(true));
+  });
+});
